@@ -1,0 +1,1983 @@
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uzm. Psk. & Psikiyatrist | Ruh Sağlığı ve Terapi Merkezi</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Cormorant Garamond (Prestijli Başlıklar) & Plus Jakarta Sans (Modern Okunabilirlik) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        sage: {
+                            50: '#f4f7f5',
+                            100: '#e3ebe6',
+                            200: '#c7d8ce',
+                            300: '#9fbcae',
+                            400: '#749b88',
+                            500: '#537e6a',
+                            600: '#3f6453',
+                            700: '#345144',
+                            800: '#2b4238',
+                            900: '#1B3B36', // Ana Kurumsal Zümrüt/Adaçayı
+                        },
+                        sand: {
+                            50: '#FAF8F5', // Ana Sıcak Krem Arkaplan
+                            100: '#F3EFEA',
+                            200: '#E6DEC8',
+                            300: '#D5C7A3',
+                        },
+                        terra: {
+                            400: '#D48C70',
+                            500: '#C87D65', // Vurgu Rengi
+                            600: '#B0654E',
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'soft': '0 20px 40px -15px rgba(27, 59, 54, 0.06)',
+                        'glow': '0 0 25px rgba(200, 125, 101, 0.35)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Özel Kaydırma Çubuğu */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FAF8F5;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #9fbcae;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #537e6a;
+        }
+
+        /* Yumuşak Kaydırma ve Giriş Animasyonları (Scroll Reveal) */
+        .reveal {
+            opacity: 0;
+            transform: translateY(35px);
+            transition: all 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-delay-1 { transition-delay: 0.12s; }
+        .reveal-delay-2 { transition-delay: 0.24s; }
+        .reveal-delay-3 { transition-delay: 0.36s; }
+
+        /* Paralaks Arka Plan Doku */
+        .bg-grid-pattern {
+            background-image: radial-gradient(rgba(27, 59, 54, 0.08) 1px, transparent 1px);
+            background-size: 28px 28px;
+        }
+
+        /* Nefes Egzersizi Animasyonu */
+        @keyframes breathePulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.45); opacity: 0.9; }
+        }
+        .breathe-circle {
+            transition: all 4s ease-in-out;
+        }
+
+        /* Yüzen Elemanlar */
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(1.5deg); }
+        }
+        .animate-float {
+            animation: floatSlow 6s ease-in-out infinite;
+        }
+        .animate-float-delayed {
+            animation: floatSlow 7s ease-in-out 2s infinite;
+        }
+
+        /* Sekme Geçişleri */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.45s ease-out forwards;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-sand-50 text-slate-800 font-sans antialiased selection:bg-sage-900 selection:text-white overflow-x-hidden">
+
+    <!-- ÜST KAYDIRMA İLERLEME ÇUBUĞU -->
+    <div id="scroll-progress" class="fixed top-0 left-0 h-1 bg-gradient-to-r from-sage-700 via-terra-500 to-sage-900 z-[60] w-0 transition-all duration-75"></div>
+
+    <!-- ÜST BİLGİ BARI (Topbar) -->
+    <div class="bg-sage-900 text-sand-100 text-xs py-2.5 px-4 border-b border-sage-800 relative z-50">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+            <div class="flex items-center space-x-4">
+                <span class="flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <span>Bugün Kliniğimiz Açık: 09:00 - 20:00</span>
+                </span>
+                <span class="hidden md:inline text-sage-400">|</span>
+                <span class="hidden md:flex items-center gap-1 text-sand-200">
+                    <i class="ph ph-map-pin text-terra-400"></i> Bağdat Cad. & Ataşehir Finans Merkezi, İstanbul
+                </span>
+            </div>
+            <div class="flex items-center space-x-4 ml-auto sm:ml-0">
+                <button onclick="openBreathingModal()" class="flex items-center gap-1.5 text-amber-200 hover:text-white transition font-medium bg-sage-800/80 px-2.5 py-1 rounded-full border border-sage-700">
+                    <i class="ph-fill ph-wind text-terra-400"></i> Panik / Kaygı Anı Nefes Asistanı
+                </button>
+                <button onclick="openAdminPanel()" class="flex items-center gap-1 text-sage-200 hover:text-white transition font-medium bg-white/10 px-2.5 py-1 rounded-full" title="Müşteriye göstereceğiniz Yönetim Paneli">
+                    <i class="ph ph-lock-key"></i> Uzman Paneli <span id="admin-badge" class="bg-terra-500 text-white text-[10px] px-1.5 py-0.2 rounded-full ml-1">3</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ANA NAVİGASYON (Sticky Glassmorphism) -->
+    <header id="navbar" class="sticky top-0 z-40 transition-all duration-300 bg-sand-50/85 backdrop-blur-md border-b border-sage-200/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-11 h-11 rounded-2xl bg-sage-900 flex items-center justify-center text-sand-50 shadow-md group-hover:bg-terra-500 transition-colors">
+                    <i class="ph-light ph-flower-lotus text-2xl"></i>
+                </div>
+                <div>
+                    <span class="font-serif text-xl sm:text-2xl font-bold tracking-tight text-sage-900 block leading-none">Dr. Elif Soylu</span>
+                    <span class="text-[11px] uppercase tracking-widest text-sage-600 font-medium block mt-1">Psikiyatri & Psikoterapi</span>
+                </div>
+            </a>
+
+            <!-- Masaüstü Menü -->
+            <nav class="hidden lg:flex items-center space-x-7 text-sm font-medium text-slate-700">
+                <a href="#hakkimda" class="hover:text-sage-900 transition py-2">Hakkımda</a>
+                <a href="#uzmanliklar" class="hover:text-sage-900 transition py-2">Terapi Alanları</a>
+                <a href="#oz-degerlendirme" class="hover:text-sage-900 transition py-2 flex items-center gap-1 text-terra-600 font-semibold">
+                    <i class="ph-fill ph-sparkle"></i> Ruh Hali Testi
+                </a>
+                <a href="#ekoller" class="hover:text-sage-900 transition py-2">Yöntemler & TMS</a>
+                <a href="#klinik" class="hover:text-sage-900 transition py-2">Klinik Turu</a>
+                <a href="#makaleler" class="hover:text-sage-900 transition py-2">Blog</a>
+                <a href="#sss" class="hover:text-sage-900 transition py-2">S.S.S.</a>
+            </nav>
+
+            <!-- Randevu CTA Butonu -->
+            <div class="hidden sm:flex items-center gap-3">
+                <a href="#randevu-motoru" class="bg-sage-900 hover:bg-sage-800 text-white px-5 py-3 rounded-xl text-sm font-semibold shadow-soft hover:shadow-lg transition-all flex items-center gap-2 transform hover:-translate-y-0.5">
+                    <i class="ph ph-calendar-plus text-lg text-terra-400"></i>
+                    <span>Online Randevu Al</span>
+                </a>
+            </div>
+
+            <!-- Mobil Menü Butonu -->
+            <button onclick="toggleMobileMenu()" class="lg:hidden p-2.5 rounded-xl bg-sage-100 text-sage-900 hover:bg-sage-200 transition">
+                <i id="mobile-menu-icon" class="ph ph-list text-2xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobil Açılır Menü -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-sand-50 border-b border-sage-200 px-6 py-5 space-y-3 shadow-xl">
+            <a href="#hakkimda" onclick="toggleMobileMenu()" class="block py-2 text-base font-medium text-slate-800 border-b border-sage-100">Hakkımda & Akademik Özgeçmiş</a>
+            <a href="#uzmanliklar" onclick="toggleMobileMenu()" class="block py-2 text-base font-medium text-slate-800 border-b border-sage-100">Uzmanlık ve Terapi Alanları</a>
+            <a href="#oz-degerlendirme" onclick="toggleMobileMenu()" class="block py-2 text-base font-semibold text-terra-600 border-b border-sage-100">✨ İnteraktif Ruh Hali Analizi</a>
+            <a href="#ekoller" onclick="toggleMobileMenu()" class="block py-2 text-base font-medium text-slate-800 border-b border-sage-100">Bilimsel Ekoller & TMS Tedavisi</a>
+            <a href="#klinik" onclick="toggleMobileMenu()" class="block py-2 text-base font-medium text-slate-800 border-b border-sage-100">Muayenehane & Gizlilik</a>
+            <a href="#makaleler" onclick="toggleMobileMenu()" class="block py-2 text-base font-medium text-slate-800 border-b border-sage-100">Bilimsel Makaleler</a>
+            <div class="pt-2 flex flex-col gap-2">
+                <a href="#randevu-motoru" onclick="toggleMobileMenu()" class="w-full bg-sage-900 text-white text-center py-3.5 rounded-xl font-semibold shadow-md">Hemen Randevu Oluştur</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ==========================================
+         BÖLÜM 1: HERO & PARALAKS GİRİŞ EKRANI
+    =========================================== -->
+    <section class="relative pt-10 pb-20 lg:pt-16 lg:pb-28 overflow-hidden bg-grid-pattern">
+        <!-- Dekoratif Paralaks Arkaplan Küreleri -->
+        <div data-parallax="0.15" class="parallax-el absolute -top-24 -left-24 w-96 h-96 bg-sage-200/50 rounded-full blur-3xl pointer-events-none"></div>
+        <div data-parallax="-0.1" class="parallax-el absolute top-1/3 right-0 w-80 h-80 bg-terra-400/15 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+                
+                <!-- Sol Sütun: Etkileyici Metin ve Aksiyonlar -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-sage-100/90 border border-sage-200 text-sage-800 text-xs font-semibold tracking-wide">
+                        <i class="ph-fill ph-shield-check text-terra-500 text-sm"></i>
+                        <span>%100 Gizlilik Esaslı • Bilimsel & Etik Psikoterapi</span>
+                    </div>
+
+                    <h1 class="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-sage-900 leading-[1.12] tracking-tight">
+                        Zihninizin Karmaşasında <br class="hidden sm:inline" />
+                        <span class="italic font-normal text-terra-600 underline decoration-terra-400/40 decoration-wavy underline-offset-8">Güvenli Bir Liman</span> Bulun.
+                    </h1>
+
+                    <p class="text-slate-600 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal">
+                        Erişkin psikiyatrisi, EMDR, Bilişsel Davranışçı Terapi ve Çift Terapisi alanlarında; yargılanmadığınız, bilimsel temelli ve size özel yapılandırılmış bir iyileşme yolculuğuna adım atın.
+                    </p>
+
+                    <!-- Hızlı Randevu & Etkileşim Barı -->
+                    <div class="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                        <a href="#randevu-motoru" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-sage-900 hover:bg-sage-800 text-white font-semibold shadow-soft hover:shadow-xl transition-all flex items-center justify-center gap-3 group">
+                            <span>Randevu Takvimini Gör</span>
+                            <i class="ph-bold ph-arrow-right group-hover:translate-x-1 transition-transform text-terra-400"></i>
+                        </a>
+                        <a href="#oz-degerlendirme" class="w-full sm:w-auto px-7 py-4 rounded-2xl bg-white hover:bg-sand-100 text-sage-900 border border-sage-200 font-semibold shadow-sm transition-all flex items-center justify-center gap-2">
+                            <i class="ph-duotone ph-Pulse text-xl text-terra-500"></i>
+                            <span>Ücretsiz Ön Değerlendirme (2 Dk)</span>
+                        </a>
+                    </div>
+
+                    <!-- Güven Rozetleri -->
+                    <div class="pt-6 border-t border-sage-200/70 grid grid-cols-3 gap-4 max-w-lg mx-auto lg:mx-0 text-left">
+                        <div class="flex items-center gap-2.5">
+                            <div class="w-10 h-10 rounded-xl bg-sage-100 flex items-center justify-center text-sage-800 shrink-0">
+                                <i class="ph-duotone ph-graduation-cap text-xl"></i>
+                            </div>
+                            <div>
+                                <div class="font-bold text-sage-900 text-sm">14+ Yıl</div>
+                                <div class="text-[11px] text-slate-500">Klinik Deneyim</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2.5">
+                            <div class="w-10 h-10 rounded-xl bg-sage-100 flex items-center justify-center text-sage-800 shrink-0">
+                                <i class="ph-duotone ph-users-three text-xl"></i>
+                            </div>
+                            <div>
+                                <div class="font-bold text-sage-900 text-sm">4.800+</div>
+                                <div class="text-[11px] text-slate-500">Başarılı Seans</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-2.5">
+                            <div class="w-10 h-10 rounded-xl bg-sage-100 flex items-center justify-center text-sage-800 shrink-0">
+                                <i class="ph-duotone ph-video-camera text-xl"></i>
+                            </div>
+                            <div>
+                                <div class="font-bold text-sage-900 text-sm">Yüz Yüze</div>
+                                <div class="text-[11px] text-slate-500">& Online Terapi</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sağ Sütun: Görsel Kompozisyon & Yüzen Kartlar -->
+                <div class="lg:col-span-5 relative">
+                    <div class="relative mx-auto max-w-md lg:max-w-none">
+                        <!-- Ana Doktor/Klinik Görseli Çerçevesi -->
+                        <div class="relative rounded-[2.2rem] overflow-hidden shadow-2xl border-8 border-white bg-sage-200 aspect-[4/5]">
+                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=900&q=85" 
+                                 alt="Uzm. Dr. Elif Soylu" 
+                                 onerror="this.src='https://placehold.co/800x1000/1B3B36/FAF8F5?text=Uzm.+Dr.+Elif+Soylu'"
+                                 class="w-full h-full object-cover object-center transform hover:scale-105 transition duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-sage-900/70 via-transparent to-transparent"></div>
+                            <div class="absolute bottom-6 left-6 right-6 text-white">
+                                <span class="px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-xs font-medium">Psikiyatri Uzmanı & Psikoterapist</span>
+                                <h3 class="font-serif text-2xl font-semibold mt-1.5">Uzm. Dr. Elif Soylu</h3>
+                                <p class="text-xs text-sand-100/90 mt-0.5">Marmara Üni. Tıp Fakültesi • Avrupa BDT Derneği Akredite</p>
+                            </div>
+                        </div>
+
+                        <!-- Yüzen Kart 1: Bugün Müsait Saat -->
+                        <div class="animate-float absolute -left-4 sm:-left-8 top-8 bg-white/95 backdrop-blur-md p-4 rounded-2xl shadow-xl border border-sage-100 max-w-[210px]">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0">
+                                    <i class="ph-fill ph-calendar-check text-xl"></i>
+                                </div>
+                                <div>
+                                    <span class="text-[11px] font-semibold uppercase tracking-wider text-emerald-700 block">En Yakın Müsaitlik</span>
+                                    <span class="text-xs font-bold text-slate-800">Bugün, 16:30 (Online)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Yüzen Kart 2: Danışan Memnuniyeti -->
+                        <div class="animate-float-delayed absolute -right-4 sm:-right-6 bottom-20 bg-white/95 backdrop-blur-md p-4 rounded-2xl shadow-xl border border-sage-100">
+                            <div class="flex items-center gap-1 text-amber-400 text-sm mb-1">
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
+                                <i class="ph-fill ph-star"></i>
+                                <span class="text-xs font-bold text-slate-700 ml-1">4.9/5</span>
+                            </div>
+                            <p class="text-[11px] text-slate-600 font-medium">DoktorTakvimi & Google Doğrulanmış</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         BÖLÜM 2: AKADEMİK GÜVEN & KURUM BANTI
+    =========================================== -->
+    <section class="py-8 bg-sand-100/80 border-y border-sage-200/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <p class="text-center text-xs uppercase tracking-widest text-sage-600 font-semibold mb-6">Üyesi Olduğu Ulusal ve Uluslararası Akademik Kuruluşlar</p>
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-6 items-center text-center opacity-80">
+                <div class="flex flex-col items-center gap-1 p-2">
+                    <i class="ph-duotone ph-buildings text-2xl text-sage-800"></i>
+                    <span class="text-xs font-semibold text-slate-700">Türkiye Psikiyatri Derneği</span>
+                </div>
+                <div class="flex flex-col items-center gap-1 p-2">
+                    <i class="ph-duotone ph-globe-hemisphere-west text-2xl text-sage-800"></i>
+                    <span class="text-xs font-semibold text-slate-700">EMDR Türkiye & Avrupa</span>
+                </div>
+                <div class="flex flex-col items-center gap-1 p-2">
+                    <i class="ph-duotone ph-brain text-2xl text-sage-800"></i>
+                    <span class="text-xs font-semibold text-slate-700">Kognitif ve Davranış Terapileri</span>
+                </div>
+                <div class="flex flex-col items-center gap-1 p-2">
+                    <i class="ph-duotone ph-heart-half text-2xl text-sage-800"></i>
+                    <span class="text-xs font-semibold text-slate-700">Gottman Çift Terapisi Enstitüsü</span>
+                </div>
+                <div class="col-span-2 md:col-span-1 flex flex-col items-center gap-1 p-2">
+                    <i class="ph-duotone ph-certificate text-2xl text-sage-800"></i>
+                    <span class="text-xs font-semibold text-slate-700">Türk Tabipleri Birliği</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         BÖLÜM 3: UZMANLIK VE TERAPİ ALANLARI (İnteraktif Filtreli)
+    =========================================== -->
+    <section id="uzmanliklar" class="py-20 lg:py-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto reveal">
+            <span class="text-terra-600 font-semibold text-xs uppercase tracking-widest">Size Nasıl Yardımcı Olabilirim?</span>
+            <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-sage-900 mt-2">Uzmanlık ve Tedavi Alanlarımız</h2>
+            <p class="text-slate-600 mt-4 text-base leading-relaxed">
+                Her bireyin iç dünyası ve yaşam öyküsü parmak izi kadar benzersizdir. Tanı etiketlerinin ötesine geçerek, yaşadığınız güçlüğü bütüncül bir psikiyatrik ve psikoterapötik yaklaşımla ele alıyoruz.
+            </p>
+        </div>
+
+        <!-- Kategori Filtre Butonları -->
+        <div class="flex flex-wrap justify-center gap-2 sm:gap-3 mt-10 reveal reveal-delay-1" id="service-filters">
+            <button onclick="filterServices('all')" class="service-filter-btn active px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition bg-sage-900 text-white shadow-sm" data-filter="all">Tüm Alanlar</button>
+            <button onclick="filterServices('duygudurum')" class="service-filter-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition bg-white text-slate-700 hover:bg-sage-100 border border-sage-200" data-filter="duygudurum">Kaygı & Depresyon</button>
+            <button onclick="filterServices('travma')" class="service-filter-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition bg-white text-slate-700 hover:bg-sage-100 border border-sage-200" data-filter="travma">Travma & EMDR</button>
+            <button onclick="filterServices('iliski')" class="service-filter-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition bg-white text-slate-700 hover:bg-sage-100 border border-sage-200" data-filter="iliski">Çift & İlişki Terapisi</button>
+            <button onclick="filterServices('norogelisimsel')" class="service-filter-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition bg-white text-slate-700 hover:bg-sage-100 border border-sage-200" data-filter="norogelisimsel">Yetişkin DEHB & OKB</button>
+        </div>
+
+        <!-- Hizmet Kartları Grid -->
+        <div id="services-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 mt-12">
+            <!-- JS ile Dinamik Doldurulacak (Detay Modalı Açılabilir) -->
+        </div>
+    </section>
+
+    <!-- ==========================================
+         BÖLÜM 4: İNTERAKTİF RUH HALİ ÖZ-DEĞERLENDİRME TESTİ
+    =========================================== -->
+    <section id="oz-degerlendirme" class="py-20 bg-sage-900 text-white relative overflow-hidden">
+        <!-- Dekoratif Çizgiler -->
+        <div class="absolute top-0 right-0 w-96 h-96 bg-terra-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-0 left-10 w-80 h-80 bg-sage-600/20 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-2xl mx-auto mb-12 reveal">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 text-terra-400 text-xs font-semibold mb-3">
+                    <i class="ph-fill ph-magic-wand"></i> İnteraktif Klinik Farkındalık Aracı
+                </span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold">Son Zamanlarda Kendinizi Nasıl Hissediyorsunuz?</h2>
+                <p class="text-sage-200 text-sm sm:text-base mt-3">
+                    Bu 5 soruluk kısa öz-değerlendirme envanteri tıbbi bir tanı koymaz; ancak hangi terapi desteğinin size daha uygun olabileceği konusunda anında yol haritası sunar.
+                </p>
+            </div>
+
+            <!-- Test Kutusu -->
+            <div class="bg-white text-slate-800 rounded-3xl shadow-2xl p-6 sm:p-10 border border-sage-100 reveal reveal-delay-1">
+                <div id="quiz-container">
+                    <!-- Üst İlerleme -->
+                    <div class="flex items-center justify-between text-xs font-semibold text-sage-600 mb-3">
+                        <span id="quiz-step-label">Soru 1 / 5</span>
+                        <span id="quiz-percent-label">%20 Tamamlandı</span>
+                    </div>
+                    <div class="w-full h-2 bg-sand-100 rounded-full overflow-hidden mb-8">
+                        <div id="quiz-progress-bar" class="h-full bg-terra-500 transition-all duration-500 w-1/5"></div>
+                    </div>
+
+                    <!-- Soru Metni -->
+                    <h3 id="quiz-question" class="font-serif text-2xl sm:text-3xl font-bold text-sage-900 mb-6">
+                        Son 2 hafta içinde; gelecekle ilgili aşırı endişe, kontrolü kaybetme hissi veya bedensel gerginlik (çarpıntı, nefes darlığı) yaşadınız mı?
+                    </h3>
+
+                    <!-- Seçenekler -->
+                    <div id="quiz-options" class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                        <!-- JS ile doldurulur -->
+                    </div>
+                </div>
+
+                <!-- Test Sonuç Ekranı (Başlangıçta Gizli) -->
+                <div id="quiz-result" class="hidden text-center py-4 space-y-6">
+                    <div class="w-16 h-16 rounded-2xl bg-sage-100 text-sage-900 flex items-center justify-center mx-auto text-3xl">
+                        <i class="ph-duotone ph-compass"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-terra-600">Size Özel Değerlendirme Özeti</span>
+                        <h3 id="result-title" class="font-serif text-3xl font-bold text-sage-900 mt-1">Duygusal Yük ve Kaygı Yönetimi</h3>
+                    </div>
+                    <p id="result-desc" class="text-slate-600 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
+                        Yanıtlarınız, son dönemde zihinsel enerjinizi tüketen yoğun bir stres veya kaygı döngüsü içinde olabileceğinize işaret ediyor. Bilişsel Davranışçı Terapi (BDT) veya EMDR ile bu döngüyü kırmak mümkündür.
+                    </p>
+                    <div class="bg-sand-50 p-5 rounded-2xl border border-sage-200 max-w-xl mx-auto text-left flex items-start gap-3">
+                        <i class="ph-fill ph-Lightbulb text-2xl text-terra-500 shrink-0 mt-0.5"></i>
+                        <div class="text-xs sm:text-sm text-slate-700">
+                            <strong>Önerilen İlk Adım:</strong> <span id="result-recommendation">50 dakikalık Bireysel Ön Değerlendirme ve Yapılandırma Seansı.</span>
+                        </div>
+                    </div>
+                    <div class="pt-2 flex flex-wrap justify-center gap-4">
+                        <button onclick="applyQuizToBooking()" class="px-7 py-3.5 rounded-xl bg-sage-900 hover:bg-sage-800 text-white font-semibold text-sm shadow-lg transition flex items-center gap-2">
+                            <i class="ph ph-calendar-check text-terra-400 text-lg"></i>
+                            <span>Bu Alanda Hemen Randevu Al</span>
+                        </button>
+                        <button onclick="resetQuiz()" class="px-5 py-3.5 rounded-xl bg-sand-100 hover:bg-sand-200 text-slate-700 font-semibold text-sm transition">
+                            Testi Tekrarla
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         BÖLÜM 5: HAKKIMDA, EĞİTİM & ETİK DEĞERLER
+    =========================================== -->
+    <section id="hakkimda" class="py-20 lg:py-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <!-- Sol: Görsel ve Deneyim Zaman Çizelgesi -->
+            <div class="lg:col-span-5 space-y-6 reveal">
+                <div class="relative rounded-3xl overflow-hidden shadow-xl border-4 border-white">
+                    <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=800&q=80" 
+                         alt="Dr. Elif Soylu Terapi Odası" 
+                         onerror="this.src='https://placehold.co/700x500/345144/FAF8F5?text=Klinik+Gorseli'"
+                         class="w-full h-72 sm:h-80 object-cover">
+                    <div class="bg-sage-900 text-white p-5">
+                        <p class="font-serif italic text-lg text-sand-100">"İyileşme, hikayenizi yargılanmadan anlatabildiğiniz güvenli bir ilişkide başlar."</p>
+                        <p class="text-xs text-terra-400 mt-1 font-semibold">— Uzm. Dr. Elif Soylu</p>
+                    </div>
+                </div>
+
+                <!-- Akademik Kronoloji Kartı -->
+                <div class="bg-white p-6 rounded-3xl shadow-soft border border-sage-100 space-y-4">
+                    <h4 class="font-serif text-xl font-bold text-sage-900 flex items-center gap-2">
+                        <i class="ph-duotone ph-scroll text-terra-500"></i> Akademik & Klinik Yolculuk
+                    </h4>
+                    <div class="space-y-3 text-xs sm:text-sm border-l-2 border-sage-200 pl-4 ml-2">
+                        <div class="relative">
+                            <span class="w-2.5 h-2.5 rounded-full bg-terra-500 absolute -left-[21px] top-1.5"></span>
+                            <span class="font-bold text-sage-900">2010 - 2016:</span> Ege Üniversitesi Tıp Fakültesi (Onur Derecesi)
+                        </div>
+                        <div class="relative">
+                            <span class="w-2.5 h-2.5 rounded-full bg-sage-700 absolute -left-[21px] top-1.5"></span>
+                            <span class="font-bold text-sage-900">2016 - 2021:</span> Marmara Üniversitesi Tıp Fak. Psikiyatri İhtisası
+                        </div>
+                        <div class="relative">
+                            <span class="w-2.5 h-2.5 rounded-full bg-sage-700 absolute -left-[21px] top-1.5"></span>
+                            <span class="font-bold text-sage-900">2021 - 2024:</span> Şehir Hastanesi Erişkin Psikiyatri & Travma Birimi
+                        </div>
+                        <div class="relative">
+                            <span class="w-2.5 h-2.5 rounded-full bg-emerald-600 absolute -left-[21px] top-1.5"></span>
+                            <span class="font-bold text-sage-900">2024 - Günümüz:</span> Özel Psikiyatri & Psikoterapi Muayenehanesi
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sağ: Biyografi ve Felsefe -->
+            <div class="lg:col-span-7 space-y-6 reveal reveal-delay-1">
+                <span class="text-terra-600 font-semibold text-xs uppercase tracking-widest">Hekiminiz & Terapistiniz Hakkında</span>
+                <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-sage-900 leading-tight">
+                    Tıbbi Hekimlik Bilgisini, İnsani ve Derinlikli Psikoterapi İle Buluşturuyoruz.
+                </h2>
+                <p class="text-slate-600 leading-relaxed text-base">
+                    Merhaba, ben <strong>Uzm. Dr. Elif Soylu</strong>. Tıp eğitimim ve psikiyatri uzmanlığım boyunca, ruhsal zorlukların yalnızca biyolojik birer "semptom" olmadığını; kişinin geçmişi, ilişkileri ve yaşam anlamıyla doğrudan bağlantılı olduğunu deneyimledim.
+                </p>
+                <p class="text-slate-600 leading-relaxed text-base">
+                    Muayenehanemde her danışanımı standart kalıplara sokmak yerine; <strong>gerektiğinde modern farmakoterapi (ilaç tedavisi) veya ilaçsız TMS tedavisini</strong>, <strong>her zaman ise kanıta dayalı psikoterapi ekollerini</strong> (BDT, EMDR, Şema Terapi, ACT) entegre ederek kişiye özel bir süreç yürütüyorum.
+                </p>
+
+                <!-- 3 Temel İlke -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4">
+                    <div class="bg-white p-5 rounded-2xl border border-sage-100 shadow-sm">
+                        <i class="ph-duotone ph-lock-laminated text-2xl text-terra-500"></i>
+                        <h4 class="font-bold text-sage-900 text-sm mt-2">Mutlak Mahremiyet</h4>
+                        <p class="text-xs text-slate-500 mt-1">Görüşmelerimiz ve kayıtlarınız en üst düzey tıbbi etik ve KVKK güvencesindedir.</p>
+                    </div>
+                    <div class="bg-white p-5 rounded-2xl border border-sage-100 shadow-sm">
+                        <i class="ph-duotone ph-scales text-2xl text-terra-500"></i>
+                        <h4 class="font-bold text-sage-900 text-sm mt-2">Yargısız Alan</h4>
+                        <p class="text-xs text-slate-500 mt-1">Kimliğiniz, inancınız veya yaşadıklarınız ne olursa olsun koşulsuz kabul görürsünüz.</p>
+                    </div>
+                    <div class="bg-white p-5 rounded-2xl border border-sage-100 shadow-sm">
+                        <i class="ph-duotone ph-chart-line-up text-2xl text-terra-500"></i>
+                        <h4 class="font-bold text-sage-900 text-sm mt-2">Yapılandırılmış Hedef</h4>
+                        <p class="text-xs text-slate-500 mt-1">Ucu açık belirsiz sohbetler değil, ilk seanstan itibaren net hedefli bir yol haritası.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         BÖLÜM 6: BİLİMSEL EKOLLER & TMS TEKNOLOJİSİ (Sekmeli)
+    =========================================== -->
+    <section id="ekoller" class="py-20 bg-sand-100/90 border-y border-sage-200/70">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12 reveal">
+                <span class="text-terra-600 font-semibold text-xs uppercase tracking-widest">Kanıta Dayalı Yaklaşımlar</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-sage-900 mt-2">Kullandığımız Terapi Ekolleri & İleri Teknolojiler</h2>
+                <p class="text-slate-600 text-sm sm:text-base mt-3">Dünya Sağlık Örgütü ve uluslararası psikiyatri kılavuzlarının etkinliğini onayladığı modern yöntemler.</p>
+            </div>
+
+            <!-- Sekme Başlıkları -->
+            <div class="flex flex-wrap justify-center gap-2 sm:gap-3 mb-10 reveal">
+                <button onclick="switchMethodTab('emdr')" id="tab-btn-emdr" class="method-tab-btn active px-5 py-3 rounded-2xl font-semibold text-xs sm:text-sm bg-sage-900 text-white shadow-md transition">
+                    EMDR Terapisi
+                </button>
+                <button onclick="switchMethodTab('bdt')" id="tab-btn-bdt" class="method-tab-btn px-5 py-3 rounded-2xl font-semibold text-xs sm:text-sm bg-white text-slate-700 hover:bg-sage-100 border border-sage-200 transition">
+                    Bilişsel Davranışçı Terapi (BDT)
+                </button>
+                <button onclick="switchMethodTab('tms')" id="tab-btn-tms" class="method-tab-btn px-5 py-3 rounded-2xl font-semibold text-xs sm:text-sm bg-white text-slate-700 hover:bg-sage-100 border border-sage-200 transition">
+                    ✨ İlaçsız TMS Tedavisi
+                </button>
+                <button onclick="switchMethodTab('cift')" id="tab-btn-cift" class="method-tab-btn px-5 py-3 rounded-2xl font-semibold text-xs sm:text-sm bg-white text-slate-700 hover:bg-sage-100 border border-sage-200 transition">
+                    Gottman & İlişki Pusulası
+                </button>
+            </div>
+
+            <!-- Sekme İçerikleri -->
+            <div class="bg-white rounded-3xl p-6 sm:p-10 shadow-soft border border-sage-100">
+                <!-- EMDR -->
+                <div id="tab-emdr" class="tab-content active">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                        <div class="lg:col-span-7 space-y-4">
+                            <span class="px-3 py-1 rounded-full bg-terra-500/10 text-terra-600 text-xs font-bold">Göz Hareketleriyle Duyarsızlaştırma ve Yeniden İşleme</span>
+                            <h3 class="font-serif text-3xl font-bold text-sage-900">Geçmişin Bugünkü Yükünü Bilimsel Olarak Hafifletin</h3>
+                            <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                                EMDR, beynin zamanında işleyemediği ve "kilitli kalmış" travmatik anıları, çift yönlü uyarım (göz hareketleri, ses veya dokunsal titreşimler) aracılığıyla yeniden işlemesini sağlayan güçlü bir psikoterapi yaklaşımıdır. Anı silinmez, ancak anının yarattığı acı, korku ve bedensel sıkışma hissi ortadan kalkar.
+                            </p>
+                            <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs sm:text-sm text-slate-700 pt-2">
+                                <li class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-emerald-600"></i> Travma Sonrası Stres Bozukluğu</li>
+                                <li class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-emerald-600"></i> Panik Atak ve Fobiler</li>
+                                <li class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-emerald-600"></i> Çocukluk Çağı Olumsuz Yaşantıları</li>
+                                <li class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-emerald-600"></i> Aldatılma, Yas ve Ayrılık Travmaları</li>
+                            </ul>
+                        </div>
+                        <div class="lg:col-span-5 bg-sand-50 p-6 rounded-2xl border border-sage-200 space-y-4">
+                            <h4 class="font-bold text-sage-900 text-sm">EMDR Seansı Nasıl İşler?</h4>
+                            <div class="space-y-3 text-xs text-slate-600">
+                                <div class="p-3 bg-white rounded-xl border border-sage-100"><strong>1. Hazırlık & Güvenli Alan:</strong> Danışanın duygusal regülasyon becerileri güçlendirilir.</div>
+                                <div class="p-3 bg-white rounded-xl border border-sage-100"><strong>2. Hedef Anı Tespiti:</strong> Bugünkü semptomu tetikleyen kök anı ve olumsuz inanç ("Güvende değilim", "Yetersizim") belirlenir.</div>
+                                <div class="p-3 bg-white rounded-xl border border-sage-100"><strong>3. Duyarsızlaştırma:</strong> Çift yönlü uyarımla beynin doğal iyileşme mekanizması devreye sokulur.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BDT -->
+                <div id="tab-bdt" class="tab-content">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                        <div class="lg:col-span-7 space-y-4">
+                            <span class="px-3 py-1 rounded-full bg-sage-100 text-sage-800 text-xs font-bold">Altın Standart Psikoterapi Ekolü</span>
+                            <h3 class="font-serif text-3xl font-bold text-sage-900">Düşünce, Duygu ve Davranış Döngünüzü Yeniden Yapılandırın</h3>
+                            <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                                Bilişsel Davranışçı Terapi (BDT), olayların kendisinden ziyade olayları yorumlama biçimimizin (otomatik düşüncelerimizin) duygularımızı belirlediği ilkesine dayanır. Danışana kendi kendisinin terapisti olma becerisi kazandıran, güncel ve çözüm odaklı bir yöntemdir.
+                            </p>
+                            <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs sm:text-sm text-slate-700 pt-2">
+                                <li class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-emerald-600"></i> Yaygın Anksiyete ve Sağlık Kaygısı</li>
+                                <li class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-emerald-600"></i> Obsesif Kompulsif Bozukluk (OKB)</li>
+                                <li class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-emerald-600"></i> Majör Depresyon ve İsteksizlik</li>
+                                <li class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-emerald-600"></i> Sosyal Fobi ve Özgüven Sorunları</li>
+                            </ul>
+                        </div>
+                        <div class="lg:col-span-5 bg-sand-50 p-6 rounded-2xl border border-sage-200">
+                            <div class="text-center space-y-3">
+                                <i class="ph-duotone ph-arrows-clockwise text-4xl text-terra-500"></i>
+                                <h4 class="font-bold text-sage-900">Bilişsel Üçgen Modeli</h4>
+                                <p class="text-xs text-slate-600">Zihninizdeki "Felaketleştirme", "Ya Hep Ya Hiç" gibi bilişsel çarpıtmaları fark edip gerçekçi alternatiflerle değiştirdiğimizde, kaygı ve çökkünlük doğal olarak azalır.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TMS -->
+                <div id="tab-tms" class="tab-content">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                        <div class="lg:col-span-7 space-y-4">
+                            <span class="px-3 py-1 rounded-full bg-amber-100 text-amber-800 text-xs font-bold">FDA Onaylı Nöromodülasyon Teknolojisi</span>
+                            <h3 class="font-serif text-3xl font-bold text-sage-900">TMS (Transkraniyal Manyetik Uyarım) İle İlaçsız Tedavi</h3>
+                            <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                                İlaç kullanmak istemeyen, ilaç yan etkilerinden çekinen, gebe/emziren veya ilaç tedavisine dirençli depresyon ve OKB yaşayan danışanlarımız için kliniğimizde uygulanan <strong>ağrısız, cerrahi olmayan</strong> modern beyin uyarım tedavisidir.
+                            </p>
+                            <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs sm:text-sm text-slate-700 pt-2">
+                                <li class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-emerald-600"></i> Sistemik yan etki (kilo artışı, uyku hali) yoktur</li>
+                                <li class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-emerald-600"></i> Seans sonrası hemen günlük hayata dönülür</li>
+                                <li class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-emerald-600"></i> Dirençli Depresyon ve OKB'de yüksek başarı</li>
+                                <li class="flex items-center gap-2"><i class="ph-fill ph-check-circle text-emerald-600"></i> Gebelik ve emzirme döneminde güvenli</li>
+                            </ul>
+                        </div>
+                        <div class="lg:col-span-5 bg-sage-900 text-white p-6 rounded-2xl space-y-3">
+                            <span class="text-xs text-terra-400 font-bold uppercase">Teknoloji Özeti</span>
+                            <h4 class="font-serif text-2xl font-bold">25 Dakikalık Konforlu Seanslar</h4>
+                            <p class="text-xs text-sage-200 leading-relaxed">Beynin duygu durumunu yöneten prefrontal korteks bölgesine odaklanmış manyetik dalgalar gönderilerek sinir hücrelerinin doğal aktivitesi ve nöroplastisite yeniden düzenlenir.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Çift Terapisi -->
+                <div id="tab-cift" class="tab-content">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                        <div class="lg:col-span-7 space-y-4">
+                            <span class="px-3 py-1 rounded-full bg-rose-100 text-rose-800 text-xs font-bold">İlişki Pusulası & Gottman Yaklaşımı</span>
+                            <h3 class="font-serif text-3xl font-bold text-sage-900">İlişkinizdeki Kördüğümleri Güvenli İletişimle Çözün</h3>
+                            <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                                Çift terapisi "kimin haklı kimin haksız" olduğunu bulma mahkemesi değildir. İlişkiyi üçüncü bir varlık olarak ele alır; çatışma döngülerini, duygusal kopuklukları, güven kayıplarını ve bağlanma yaralarını onarmayı hedefler.
+                            </p>
+                        </div>
+                        <div class="lg:col-span-5 bg-sand-50 p-6 rounded-2xl border border-sage-200 text-xs text-slate-700 space-y-2">
+                            <div class="font-bold text-sage-900 text-sm mb-2">Mahşerin 4 Atlısını Durdurmak:</div>
+                            <p>• Suçlama ve Eleştiri yerine → Yumuşak Başlangıç</p>
+                            <p>• Savunmaya Geçme yerine → Sorumluluk Alma</p>
+                            <p>• Duvar Örme / Küsmek yerine → Duygusal Yatışma</p>
+                            <p>• Hor Görme yerine → Takdir ve Şükran Kültürü</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         BÖLÜM 7: CANLI RANDEVU MOTORU (Sanki Veritabanı Varmış Gibi!)
+    =========================================== -->
+    <section id="randevu-motoru" class="py-20 lg:py-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-14 reveal">
+            <span class="px-3.5 py-1.5 rounded-full bg-terra-500/15 text-terra-600 text-xs font-bold uppercase tracking-wider">7/24 Akıllı Randevu Sistemi</span>
+            <h2 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-sage-900 mt-3">Sekreter Beklemeden, 60 Saniyede Randevunuzu Planlayın</h2>
+            <p class="text-slate-600 mt-3 text-sm sm:text-base">
+                İster İstanbul kliniğimizde yüz yüze, ister dünyanın her yerinden yüksek güvenlikli görüntülü görüşme ile seansınızı hemen ayırtın.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            
+            <!-- Sol: 4 Adımlı İnteraktif Randevu Sihirbazı (8 Sütun) -->
+            <div class="lg:col-span-8 bg-white rounded-3xl shadow-xl border border-sage-200/80 overflow-hidden reveal">
+                
+                <!-- Adım Göstergesi (Stepper) -->
+                <div class="bg-sage-900 text-white px-6 py-5 grid grid-cols-4 gap-2 text-center text-xs">
+                    <div id="step-ind-1" class="flex flex-col sm:flex-row items-center justify-center gap-2 font-bold text-terra-400">
+                        <span class="w-6 h-6 rounded-full bg-terra-500 text-white flex items-center justify-center text-xs">1</span>
+                        <span class="hidden sm:inline">Görüşme Türü</span>
+                    </div>
+                    <div id="step-ind-2" class="flex flex-col sm:flex-row items-center justify-center gap-2 text-sage-300">
+                        <span class="w-6 h-6 rounded-full bg-sage-800 text-sage-300 flex items-center justify-center text-xs">2</span>
+                        <span class="hidden sm:inline">Tarih & Saat</span>
+                    </div>
+                    <div id="step-ind-3" class="flex flex-col sm:flex-row items-center justify-center gap-2 text-sage-300">
+                        <span class="w-6 h-6 rounded-full bg-sage-800 text-sage-300 flex items-center justify-center text-xs">3</span>
+                        <span class="hidden sm:inline">Bilgileriniz</span>
+                    </div>
+                    <div id="step-ind-4" class="flex flex-col sm:flex-row items-center justify-center gap-2 text-sage-300">
+                        <span class="w-6 h-6 rounded-full bg-sage-800 text-sage-300 flex items-center justify-center text-xs">4</span>
+                        <span class="hidden sm:inline">Onay & Kodu</span>
+                    </div>
+                </div>
+
+                <!-- ADIM 1: Görüşme Formatı ve Hizmet Seçimi -->
+                <div id="booking-step-1" class="p-6 sm:p-8 space-y-6">
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-sage-700 mb-3">1. Görüşme Formatını Seçin</label>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <button type="button" onclick="selectSessionMode('Yüz Yüze Klinik (İstanbul)')" id="mode-yuzyuze" class="mode-btn p-4 rounded-2xl border-2 border-sage-900 bg-sage-50/70 text-left flex items-start gap-3.5 transition">
+                                <div class="w-11 h-11 rounded-xl bg-sage-900 text-white flex items-center justify-center text-xl shrink-0">
+                                    <i class="ph-duotone ph-armchair"></i>
+                                </div>
+                                <div>
+                                    <div class="font-bold text-sage-900 text-sm">Yüz Yüze Muayenehane</div>
+                                    <div class="text-xs text-slate-500 mt-0.5">Ataşehir / Bağdat Cad. Kliniğimizde</div>
+                                </div>
+                            </button>
+                            <button type="button" onclick="selectSessionMode('Online Görüntülü Terapi')" id="mode-online" class="mode-btn p-4 rounded-2xl border-2 border-sage-200 hover:border-sage-400 bg-white text-left flex items-start gap-3.5 transition">
+                                <div class="w-11 h-11 rounded-xl bg-sage-100 text-sage-900 flex items-center justify-center text-xl shrink-0">
+                                    <i class="ph-duotone ph-video-camera"></i>
+                                </div>
+                                <div>
+                                    <div class="font-bold text-sage-900 text-sm">Online Görüntülü Seans</div>
+                                    <div class="text-xs text-slate-500 mt-0.5">Ev konforunda, şifreli özel bağlantı</div>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-sage-700 mb-3">2. Başvurmak İstediğiniz Terapi / Uzmanlık Alanı</label>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="booking-service-list">
+                            <!-- JS ile Seçenekler -->
+                        </div>
+                    </div>
+
+                    <div class="pt-4 flex justify-end">
+                        <button type="button" onclick="goToBookingStep(2)" class="px-7 py-3.5 rounded-xl bg-sage-900 hover:bg-sage-800 text-white font-semibold text-sm shadow-md transition flex items-center gap-2">
+                            <span>Tarih ve Saat Seçimine Geç</span>
+                            <i class="ph-bold ph-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ADIM 2: Dinamik Takvim ve Saat Seçimi -->
+                <div id="booking-step-2" class="hidden p-6 sm:p-8 space-y-6">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <label class="text-xs font-bold uppercase tracking-wider text-sage-700">Uygun Günü Seçiniz</label>
+                            <span class="text-xs text-emerald-700 font-semibold flex items-center gap-1">
+                                <span class="w-2 h-2 rounded-full bg-emerald-500"></span> Canlı Takvim Müsaitliği
+                            </span>
+                        </div>
+                        <!-- Günler Yatay Liste -->
+                        <div id="calendar-days" class="grid grid-cols-3 sm:grid-cols-6 gap-2.5">
+                            <!-- JS ile önümüzdeki 6 iş günü -->
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold uppercase tracking-wider text-sage-700 mb-3">Müsait Seans Saatleri (50 Dakika)</label>
+                        <div id="time-slots" class="grid grid-cols-3 sm:grid-cols-4 gap-3">
+                            <!-- JS ile Dolu/Boş saatler -->
+                        </div>
+                        <p class="text-[11px] text-slate-400 mt-2">* Üzeri çizili saatler diğer danışanlarımız tarafından rezerve edilmiştir.</p>
+                    </div>
+
+                    <div class="pt-4 flex justify-between items-center border-t border-sage-100">
+                        <button type="button" onclick="goToBookingStep(1)" class="px-5 py-3 rounded-xl bg-sand-100 hover:bg-sand-200 text-slate-700 font-semibold text-sm transition">
+                            ← Geri Dön
+                        </button>
+                        <button type="button" onclick="goToBookingStep(3)" class="px-7 py-3.5 rounded-xl bg-sage-900 hover:bg-sage-800 text-white font-semibold text-sm shadow-md transition flex items-center gap-2">
+                            <span>Devam Et</span>
+                            <i class="ph-bold ph-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ADIM 3: Danışan Bilgileri ve Gizlilik -->
+                <div id="booking-step-3" class="hidden p-6 sm:p-8 space-y-5">
+                    <div class="bg-sage-50 p-4 rounded-2xl border border-sage-200 flex items-center gap-3 text-xs text-sage-900">
+                        <i class="ph-fill ph-shield-check text-2xl text-terra-500 shrink-0"></i>
+                        <span>Paylaştığınız bilgiler uçtan uca şifrelenir ve yalnızca <strong>Uzm. Dr. Elif Soylu</strong> tarafından görüntülenir. Dilerseniz rumuz (takma ad) kullanabilirsiniz.</span>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-700 mb-1.5">Adınız Soyadınız (veya Rumuz) *</label>
+                            <input type="text" id="client-name" placeholder="Örn: Ahmet Yılmaz" class="w-full px-4 py-3 rounded-xl border border-sage-200 focus:border-sage-900 focus:outline-none text-sm bg-sand-50/50">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-700 mb-1.5">Telefon Numaranız (SMS Onayı İçin) *</label>
+                            <input type="tel" id="client-phone" placeholder="05XX XXX XX XX" class="w-full px-4 py-3 rounded-xl border border-sage-200 focus:border-sage-900 focus:outline-none text-sm bg-sand-50/50">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1.5">E-Posta Adresiniz (İsteğe Bağlı - Online Link İçin)</label>
+                        <input type="email" id="client-email" placeholder="ornek@eposta.com" class="w-full px-4 py-3 rounded-xl border border-sage-200 focus:border-sage-900 focus:outline-none text-sm bg-sand-50/50">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1.5">Kısaca Bahsetmek İstediğiniz Not (İsteğe Bağlı)</label>
+                        <textarea id="client-note" rows="2" placeholder="Seans öncesi uzmanımızın bilmesini istediğiniz kısa bir not..." class="w-full px-4 py-3 rounded-xl border border-sage-200 focus:border-sage-900 focus:outline-none text-sm bg-sand-50/50"></textarea>
+                    </div>
+
+                    <div id="booking-error" class="hidden text-xs font-semibold text-rose-600 bg-rose-50 p-3 rounded-xl border border-rose-200">
+                        Lütfen adınızı ve size ulaşabileceğimiz telefon numaranızı giriniz.
+                    </div>
+
+                    <div class="pt-4 flex justify-between items-center border-t border-sage-100">
+                        <button type="button" onclick="goToBookingStep(2)" class="px-5 py-3 rounded-xl bg-sand-100 hover:bg-sand-200 text-slate-700 font-semibold text-sm transition">
+                            ← Saat Seçimine Dön
+                        </button>
+                        <button type="button" onclick="submitAppointment()" class="px-8 py-4 rounded-xl bg-terra-500 hover:bg-terra-600 text-white font-bold text-sm shadow-glow transition flex items-center gap-2">
+                            <i class="ph-bold ph-check-circle text-lg"></i>
+                            <span>Randevuyu Kesinleştir</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- ADIM 4: Başarılı Randevu & WhatsApp Entegrasyon Kartı -->
+                <div id="booking-step-4" class="hidden p-6 sm:p-10 text-center space-y-6">
+                    <div class="w-16 h-16 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center mx-auto text-3xl shadow-inner">
+                        <i class="ph-fill ph-check-fat"></i>
+                    </div>
+                    <div>
+                        <span class="px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold">Randevu Kaydınız Oluşturuldu</span>
+                        <h3 class="font-serif text-3xl font-bold text-sage-900 mt-2">Teşekkürler, <span id="confirm-name">Danışanımız</span>!</h3>
+                        <p class="text-xs sm:text-sm text-slate-600 mt-1">Randevunuz uzmanımızın ekranına düşmüştür. Referans kodunuz aşağıdadır:</p>
+                    </div>
+
+                    <div class="bg-sand-50 p-5 rounded-2xl border border-sage-200 max-w-md mx-auto text-left space-y-2 text-xs sm:text-sm">
+                        <div class="flex justify-between border-b border-sage-200/70 pb-2">
+                            <span class="text-slate-500">Randevu Kodu:</span>
+                            <span id="confirm-code" class="font-mono font-bold text-sage-900">PSK-8492</span>
+                        </div>
+                        <div class="flex justify-between border-b border-sage-200/70 pb-2">
+                            <span class="text-slate-500">Format:</span>
+                            <span id="confirm-mode" class="font-semibold text-slate-800">Yüz Yüze Klinik</span>
+                        </div>
+                        <div class="flex justify-between border-b border-sage-200/70 pb-2">
+                            <span class="text-slate-500">Uzmanlık Alanı:</span>
+                            <span id="confirm-service" class="font-semibold text-slate-800">Bireysel Psikoterapi</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-slate-500">Tarih & Saat:</span>
+                            <span id="confirm-datetime" class="font-bold text-terra-600">14 Kasım, 14:00</span>
+                        </div>
+                    </div>
+
+                    <div class="pt-2 flex flex-col sm:flex-row justify-center gap-3">
+                        <button onclick="sendBookingToWhatsApp()" class="px-6 py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-sm shadow-md transition flex items-center justify-center gap-2">
+                            <i class="ph-fill ph-whatsapp-logo text-lg"></i>
+                            <span>Detayları WhatsApp'tan Kliniğe Gönder</span>
+                        </button>
+                        <button onclick="openAdminPanel()" class="px-5 py-3.5 rounded-xl bg-sage-900 text-white font-semibold text-sm transition flex items-center justify-center gap-2">
+                            <i class="ph ph-desktop"></i>
+                            <span>Uzman Panelinde Gör (Demo)</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Sağ: Canlı Özet & Neden Online Randevu? (4 Sütun) -->
+            <div class="lg:col-span-4 space-y-6 reveal reveal-delay-2">
+                <!-- Canlı Seçim Özeti -->
+                <div class="bg-sage-900 text-white p-6 rounded-3xl shadow-xl space-y-4">
+                    <div class="flex items-center justify-between border-b border-sage-800 pb-3">
+                        <span class="font-serif text-xl font-semibold">Seans Özetiniz</span>
+                        <span class="text-xs px-2.5 py-1 rounded-full bg-white/10 text-terra-400 font-semibold">50 Dakika</span>
+                    </div>
+                    <div class="space-y-3 text-xs sm:text-sm">
+                        <div>
+                            <span class="text-sage-400 block text-xs">Görüşme Şekli:</span>
+                            <span id="summary-mode" class="font-semibold text-sand-50">Yüz Yüze Klinik (İstanbul)</span>
+                        </div>
+                        <div>
+                            <span class="text-sage-400 block text-xs">Seçilen Terapi:</span>
+                            <span id="summary-service" class="font-semibold text-sand-50">Bireysel Psikoterapi & Kaygı</span>
+                        </div>
+                        <div>
+                            <span class="text-sage-400 block text-xs">Seçilen Gün & Saat:</span>
+                            <span id="summary-datetime" class="font-semibold text-terra-400">Yarın • 14:00</span>
+                        </div>
+                    </div>
+                    <div class="pt-3 border-t border-sage-800 text-[11px] text-sage-300 flex items-center gap-2">
+                        <i class="ph-fill ph-info text-terra-400 text-base"></i>
+                        <span>Randevunuza 24 saat kalaya kadar ücretsiz tarih değişikliği yapabilirsiniz.</span>
+                    </div>
+                </div>
+
+                <!-- Hızlı WhatsApp Destek Kartı -->
+                <div class="bg-white p-6 rounded-3xl border border-sage-200 shadow-soft space-y-3">
+                    <div class="flex items-center gap-3">
+                        <div class="w-11 h-11 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-2xl">
+                            <i class="ph-fill ph-whatsapp-logo"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-sage-900 text-sm">Kararsız mı Kaldınız?</h4>
+                            <p class="text-xs text-slate-500">Klinik Koordinatörümüze Sorun</p>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-600 leading-relaxed">
+                        Hangi terapi ekolünün size uygun olduğundan emin değilseniz, asistanımızla doğrudan WhatsApp üzerinden yazışabilirsiniz.
+                    </p>
+                    <a href="https://wa.me/905000000000?text=Merhaba,%20Dr.%20Elif%20Soylu%20kliniğinden%20randevu%20ve%20terapi%20süreci%20hakkında%20bilgi%20almak%20istiyorum." target="_blank" class="block w-full text-center py-3 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-800 font-bold text-xs border border-emerald-200 transition">
+                        WhatsApp Hızlı Danışma Hattı →
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==========================================
+         BÖLÜM 8: KLİNİK TURU & DANIŞAN DENEYİMLERİ
+    =========================================== -->
+    <section id="klinik" class="py-20 bg-sand-100/70 border-t border-sage-200/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
+            
+            <!-- Klinik Ortamı -->
+            <div>
+                <div class="text-center max-w-2xl mx-auto mb-12 reveal">
+                    <span class="text-terra-600 font-semibold text-xs uppercase tracking-widest">Huzurlu & Mahrem Atmosfer</span>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-sage-900 mt-2">Muayenehanemizden Kareler</h2>
+                    <p class="text-slate-600 text-sm mt-2">Danışanlarımızın birbirleriyle karşılaşmayacağı şekilde planlanmış özel bekleme alanları ve ses yalıtımlı terapi odaları.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 reveal reveal-delay-1">
+                    <div class="group relative rounded-3xl overflow-hidden shadow-md aspect-[4/3] bg-sage-200">
+                        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=700&q=80" alt="Terapi Odası" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-sage-900/80 via-transparent to-transparent flex items-end p-5">
+                            <span class="text-white font-serif text-lg font-medium">Bireysel & EMDR Terapi Odası</span>
+                        </div>
+                    </div>
+                    <div class="group relative rounded-3xl overflow-hidden shadow-md aspect-[4/3] bg-sage-200">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=700&q=80" alt="Bekleme Salonu" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-sage-900/80 via-transparent to-transparent flex items-end p-5">
+                            <span class="text-white font-serif text-lg font-medium">Mahremiyet Odaklı Dinlenme Alanı</span>
+                        </div>
+                    </div>
+                    <div class="group relative rounded-3xl overflow-hidden shadow-md aspect-[4/3] bg-sage-200">
+                        <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=700&q=80" alt="TMS Ünitesi" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-sage-900/80 via-transparent to-transparent flex items-end p-5">
+                            <span class="text-white font-serif text-lg font-medium">TMS Nöromodülasyon Ünitesi</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Danışan Yorumları (Anonimleştirilmiş Etik Format) -->
+            <div>
+                <div class="text-center max-w-2xl mx-auto mb-12 reveal">
+                    <span class="text-terra-600 font-semibold text-xs uppercase tracking-widest">Gerçek İyileşme Öyküleri</span>
+                    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-sage-900 mt-2">Danışanlarımızın Deneyimleri</h2>
+                    <p class="text-xs text-slate-500 mt-1">* Tıbbi etik kurallar gereği danışanlarımızın yalnızca baş harfleri ve kendi izin verdikleri geri bildirimler paylaşılmaktadır.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 reveal reveal-delay-1">
+                    <div class="bg-white p-7 rounded-3xl shadow-soft border border-sage-100 flex flex-col justify-between">
+                        <div>
+                            <div class="flex text-amber-400 text-sm mb-3">
+                                <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                            </div>
+                            <p class="text-slate-600 text-sm italic leading-relaxed">
+                                "Yıllardır süren panik ataklarımdan dolayı metroya bile binemiyordum. Elif Hanım ile başladığımız EMDR ve BDT süreci hayatımı geri verdi. İlk seanstan itibaren o güveni hissediyorsunuz."
+                            </p>
+                        </div>
+                        <div class="pt-5 mt-5 border-t border-sage-100 flex items-center justify-between text-xs">
+                            <span class="font-bold text-sage-900">M. K. (34, Mühendis)</span>
+                            <span class="text-sage-600 bg-sage-50 px-2.5 py-1 rounded-full">Panik Bozukluk & EMDR</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-7 rounded-3xl shadow-soft border border-sage-100 flex flex-col justify-between">
+                        <div>
+                            <div class="flex text-amber-400 text-sm mb-3">
+                                <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                            </div>
+                            <p class="text-slate-600 text-sm italic leading-relaxed">
+                                "Eşimle boşanma noktasına geldiğimizde son bir şans olarak çift terapisine başladık. Bizi hiç taraf tutmadan, o kadar bilimsel ve şefkatli yönlendirdi ki yeniden konuşabilmeyi öğrendik."
+                            </p>
+                        </div>
+                        <div class="pt-5 mt-5 border-t border-sage-100 flex items-center justify-between text-xs">
+                            <span class="font-bold text-sage-900">S. & B. T. (Evli Çift)</span>
+                            <span class="text-sage-600 bg-sage-50 px-2.5 py-1 rounded-full">Çift Terapisi</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-7 rounded-3xl shadow-soft border border-sage-100 flex flex-col justify-between">
+                        <div>
+                            <div class="flex text-amber-400 text-sm mb-3">
+                                <i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i><i class="ph-fill ph-star"></i>
+                            </div>
+                            <p class="text-slate-600 text-sm italic leading-relaxed">
+                                "Yurt dışında yaşadığım için online terapi konusunda çekincelerim vardı. Ancak web sitesinden randevu almak da seansların akışı da yüz yüze kadar samimi ve etkili geçti."
+                            </p>
+                        </div>
+                        <div class="pt-5 mt-5 border-t border-sage-100 flex items-center justify-between text-xs">
+                            <span class="font-bold text-sage-900">D. A. (29, Londra)</span>
+                            <span class="text-sage-600 bg-sage-50 px-2.5 py-1 rounded-full">Online Psikoterapi</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==========================================
+         BÖLÜM 9: BİLİMSEL BLOG & PSİKO-EĞİTİM REHBERİ
+    =========================================== -->
+    <section id="makaleler" class="py-20 lg:py-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 reveal">
+            <div>
+                <span class="text-terra-600 font-semibold text-xs uppercase tracking-widest">Psiko-Eğitim & Farkındalık</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-sage-900 mt-2">Ruh Sağlığı Kütüphanesi</h2>
+            </div>
+            <p class="text-slate-500 text-sm max-w-md mt-2 md:mt-0">
+                Google aramalarında kliniğinizi en üst sıraya taşıyacak, danışanları bilgilendiren SEO uyumlu uzman makaleleri.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 reveal reveal-delay-1" id="blog-grid">
+            <!-- JS İle Doldurulur, Tıklanınca Okuma Modalı Açılır -->
+        </div>
+    </section>
+
+    <!-- ==========================================
+         BÖLÜM 10: SIKÇA SORULAN SORULAR & İLETİŞİM FOOTER
+    =========================================== -->
+    <section id="sss" class="py-20 bg-sand-100 border-t border-sage-200/70">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 reveal">
+                <span class="text-terra-600 font-semibold text-xs uppercase tracking-widest">Merak Edilenler</span>
+                <h2 class="font-serif text-3xl sm:text-4xl font-bold text-sage-900 mt-2">Terapi Süreci Hakkında Sıkça Sorulanlar</h2>
+            </div>
+
+            <div class="space-y-4 reveal reveal-delay-1" id="faq-container">
+                <!-- SSS 1 -->
+                <div class="bg-white rounded-2xl border border-sage-200/80 overflow-hidden">
+                    <button onclick="toggleFaq(0)" class="w-full px-6 py-5 text-left flex items-center justify-between font-semibold text-sage-900 text-sm sm:text-base">
+                        <span>İlk terapi seansında beni neler bekliyor?</span>
+                        <i id="faq-icon-0" class="ph-bold ph-plus text-terra-500 transition-transform"></i>
+                    </button>
+                    <div id="faq-ans-0" class="hidden px-6 pb-5 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-sage-100 pt-3">
+                        İlk seansımız (50 dakika) bir "tanışma ve klinik değerlendirme" seansıdır. Sizi kliniğimize getiren güncel zorlukları, yaşam öykünüzü ve beklentilerinizi dinleriz. Seans sonunda size uygun terapi ekolünü (BDT, EMDR vb.) ve tahmini seans sıklığını birlikte planlarız.
+                    </div>
+                </div>
+                <!-- SSS 2 -->
+                <div class="bg-white rounded-2xl border border-sage-200/80 overflow-hidden">
+                    <button onclick="toggleFaq(1)" class="w-full px-6 py-5 text-left flex items-center justify-between font-semibold text-sage-900 text-sm sm:text-base">
+                        <span>Online terapi yüz yüze terapi kadar etkili midir?</span>
+                        <i id="faq-icon-1" class="ph-bold ph-plus text-terra-500 transition-transform"></i>
+                    </button>
+                    <div id="faq-ans-1" class="hidden px-6 pb-5 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-sage-100 pt-3">
+                        Evet. Yapılan yüzlerce uluslararası klinik araştırma; Bilişsel Davranışçı Terapi, EMDR ve Şema Terapi gibi uygulamaların online görüntülü görüşmelerde yüz yüze seanslarla birebir aynı etkinlik düzeyine sahip olduğunu kanıtlamıştır.
+                    </div>
+                </div>
+                <!-- SSS 3 -->
+                <div class="bg-white rounded-2xl border border-sage-200/80 overflow-hidden">
+                    <button onclick="toggleFaq(2)" class="w-full px-6 py-5 text-left flex items-center justify-between font-semibold text-sage-900 text-sm sm:text-base">
+                        <span>Psikiyatrik muayene veya terapi kayıtlarım e-Nabız'a işlenir mi?</span>
+                        <i id="faq-icon-2" class="ph-bold ph-plus text-terra-500 transition-transform"></i>
+                    </button>
+                    <div id="faq-ans-2" class="hidden px-6 pb-5 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-sage-100 pt-3">
+                        Özel muayenehanemizde yapılan psikoterapi görüşmeleri ve danışmanlık süreçleri tamamen gizlidir; resmi kurumlarla veya üçüncü kişilerle paylaşılmaz. Bu konuda tam mahremiyet hakkınız mevcuttur.
+                    </div>
+                </div>
+                <!-- SSS 4 -->
+                <div class="bg-white rounded-2xl border border-sage-200/80 overflow-hidden">
+                    <button onclick="toggleFaq(3)" class="w-full px-6 py-5 text-left flex items-center justify-between font-semibold text-sage-900 text-sm sm:text-base">
+                        <span>İlaç kullanmak zorunda mıyım?</span>
+                        <i id="faq-icon-3" class="ph-bold ph-plus text-terra-500 transition-transform"></i>
+                    </button>
+                    <div id="faq-ans-3" class="hidden px-6 pb-5 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-sage-100 pt-3">
+                        Hayır. Pek çok ruhsal zorluk yalnızca yapılandırılmış psikoterapi veya ilaçsız TMS tedavisi ile çözüme kavuşabilir. İlaç tedavisi yalnızca tıbbi olarak gerekli görüldüğünde, sizin onayınız ve işbirliğinizle planlanır.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- KURUMSAL FOOTER -->
+    <footer class="bg-sage-900 text-sand-100 pt-16 pb-24 lg:pb-12 border-t border-sage-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-sage-800">
+                <div class="space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-terra-500 flex items-center justify-center text-white">
+                            <i class="ph-light ph-flower-lotus text-2xl"></i>
+                        </div>
+                        <span class="font-serif text-2xl font-bold text-white">Dr. Elif Soylu</span>
+                    </div>
+                    <p class="text-xs text-sage-300 leading-relaxed">
+                        Erişkin Psikiyatrisi ve Psikoterapi Muayenehanesi. Bilimsel, etik ve insani değerler ışığında ruh sağlığı hizmeti.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-serif text-lg font-bold text-white mb-4">Hızlı Erişim</h4>
+                    <ul class="space-y-2 text-xs text-sage-300">
+                        <li><a href="#hakkimda" class="hover:text-white transition">Hakkımda & Özgeçmiş</a></li>
+                        <li><a href="#uzmanliklar" class="hover:text-white transition">Bireysel Psikoterapi</a></li>
+                        <li><a href="#ekoller" class="hover:text-white transition">EMDR & TMS Tedavisi</a></li>
+                        <li><a href="#oz-degerlendirme" class="hover:text-white transition">Ruh Hali Öz-Değerlendirme</a></li>
+                        <li><a href="#randevu-motoru" class="hover:text-terra-400 transition font-semibold">Online Randevu Takvimi</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-serif text-lg font-bold text-white mb-4">Çalışma Saatlerimiz</h4>
+                    <ul class="space-y-2 text-xs text-sage-300">
+                        <li class="flex justify-between"><span>Pazartesi - Cuma:</span> <span>09:00 - 20:00</span></li>
+                        <li class="flex justify-between"><span>Cumartesi:</span> <span>10:00 - 18:00</span></li>
+                        <li class="flex justify-between text-terra-400"><span>Online Seanslar:</span> <span>Esnek Saatler</span></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-serif text-lg font-bold text-white mb-4">Klinik İletişim</h4>
+                    <ul class="space-y-2.5 text-xs text-sage-300">
+                        <li class="flex items-start gap-2">
+                            <i class="ph-fill ph-map-pin text-terra-400 text-base shrink-0 mt-0.5"></i>
+                            <span>Barbaros Mah. Mor Sümbül Sok. Varyap Meridian Grand Tower, Ataşehir / İstanbul</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="ph-fill ph-phone text-terra-400 text-base"></i>
+                            <span>+90 (216) 555 01 92</span>
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <i class="ph-fill ph-envelope-simple text-terra-400 text-base"></i>
+                            <span>iletisim@drelifsoylu.com.tr</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-[11px] text-sage-400">
+                <p>© 2026 Uzm. Dr. Elif Soylu Psikiyatri & Psikoterapi Kliniği. Tüm hakları saklıdır.</p>
+                <p>Bu web sitesi içeriği bilgilendirme amaçlıdır, tanı ve tedavi için mutlaka hekiminize başvurunuz.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==========================================
+         SABİT HIZLI AKSİYONLAR (WhatsApp & Mobil Bar)
+    =========================================== -->
+    <!-- Masaüstü Yüzen WhatsApp Butonu -->
+    <a href="https://wa.me/905000000000?text=Merhaba,%20randevu%20hakkında%20bilgi%20almak%20istiyorum." target="_blank" 
+       class="hidden sm:flex fixed bottom-6 right-6 z-40 items-center gap-2.5 bg-emerald-600 hover:bg-emerald-700 text-white pl-4 pr-5 py-3.5 rounded-full shadow-2xl transition-all transform hover:scale-105 group">
+        <span class="relative flex h-3 w-3">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-300 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-3 w-3 bg-white"></span>
+        </span>
+        <i class="ph-fill ph-whatsapp-logo text-2xl"></i>
+        <div class="text-left leading-tight">
+            <span class="block text-[10px] text-emerald-100">Hızlı Randevu & Bilgi</span>
+            <span class="block text-xs font-bold">WhatsApp Hattı</span>
+        </div>
+    </a>
+
+    <!-- Mobil Alt Sabit Eylem Çubuğu -->
+    <div class="sm:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-sage-200 p-2.5 grid grid-cols-2 gap-2 shadow-2xl">
+        <a href="https://wa.me/905000000000" target="_blank" class="flex items-center justify-center gap-2 py-3 rounded-xl bg-emerald-600 text-white font-bold text-xs">
+            <i class="ph-fill ph-whatsapp-logo text-lg"></i> WhatsApp
+        </a>
+        <a href="#randevu-motoru" class="flex items-center justify-center gap-2 py-3 rounded-xl bg-sage-900 text-white font-bold text-xs">
+            <i class="ph-fill ph-calendar-plus text-lg text-terra-400"></i> Randevu Al
+        </a>
+    </div>
+
+    <!-- ==========================================
+         MODAL 1: PANİK / KAYGI ANI NEFES ASİSTANI
+    =========================================== -->
+    <div id="breathing-modal" class="fixed inset-0 z-50 hidden bg-sage-900/85 backdrop-blur-md flex items-center justify-center p-4">
+        <div class="bg-sand-50 rounded-3xl max-w-md w-full p-6 sm:p-8 text-center relative shadow-2xl border border-sage-200">
+            <button onclick="closeBreathingModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-sage-100 text-sage-900 flex items-center justify-center hover:bg-sage-200">
+                <i class="ph-bold ph-x"></i>
+            </button>
+            <span class="text-xs font-bold uppercase tracking-widest text-terra-600">Kriz & Kaygı Regülasyonu</span>
+            <h3 class="font-serif text-2xl font-bold text-sage-900 mt-1">4-4-4 Sakinleştirici Nefes</h3>
+            <p class="text-xs text-slate-600 mt-1">Şu an güvendesiniz. Daireyi takip ederek otonom sinir sisteminizi sakinleştirin.</p>
+
+            <div class="my-10 flex items-center justify-center relative h-44">
+                <div id="breath-outer" class="w-28 h-28 rounded-full bg-sage-300/40 absolute transition-all duration-[4000ms] ease-in-out"></div>
+                <div id="breath-inner" class="w-24 h-24 rounded-full bg-sage-900 text-white flex items-center justify-center font-serif text-lg font-semibold z-10 shadow-lg px-2">
+                    Başla
+                </div>
+            </div>
+
+            <div class="flex justify-center gap-3">
+                <button onclick="toggleBreathingExercise()" id="breath-toggle-btn" class="px-6 py-3 rounded-xl bg-sage-900 text-white text-xs font-bold">
+                    Egzersizi Başlat
+                </button>
+                <a href="#randevu-motoru" onclick="closeBreathingModal()" class="px-5 py-3 rounded-xl bg-terra-500 text-white text-xs font-bold">
+                    Uzman Desteği Al
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         MODAL 2: HİZMET & MAKALE DETAY MODALI
+    =========================================== -->
+    <div id="detail-modal" class="fixed inset-0 z-50 hidden bg-sage-900/75 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[85vh] overflow-y-auto p-6 sm:p-8 relative shadow-2xl">
+            <button onclick="closeDetailModal()" class="sticky top-2 float-right w-9 h-9 rounded-full bg-sage-100 text-sage-900 flex items-center justify-center hover:bg-sage-200">
+                <i class="ph-bold ph-x"></i>
+            </button>
+            <div id="detail-modal-content" class="space-y-4">
+                <!-- JS ile Doldurulur -->
+            </div>
+            <div class="mt-8 pt-4 border-t border-sage-100 flex justify-end gap-3">
+                <button onclick="closeDetailModal()" class="px-5 py-2.5 rounded-xl bg-sand-100 text-slate-700 text-xs font-semibold">Kapat</button>
+                <a href="#randevu-motoru" onclick="closeDetailModal()" class="px-6 py-2.5 rounded-xl bg-sage-900 text-white text-xs font-semibold">Bu Alanda Randevu Al</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         MODAL 3: DOKTOR / UZMAN YÖNETİM PANELİ (Satış Kozu!)
+    =========================================== -->
+    <div id="admin-modal" class="fixed inset-0 z-50 hidden bg-slate-900/80 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-4xl w-full max-h-[88vh] overflow-hidden flex flex-col shadow-2xl border border-sage-200">
+            <!-- Üst Bar -->
+            <div class="bg-sage-900 text-white px-6 py-4 flex items-center justify-between">
+                <div class="flex items-center gap-2.5">
+                    <i class="ph-duotone ph-squares-four text-2xl text-terra-400"></i>
+                    <div>
+                        <h3 class="font-bold text-sm sm:text-base">Klinik Randevu & Danışan Yönetim Sistemi (Demo)</h3>
+                        <p class="text-[11px] text-sage-300">Siteden alınan tüm randevular anında buraya düşer (Tarayıcı Hafızası Aktif)</p>
+                    </div>
+                </div>
+                <button onclick="closeAdminPanel()" class="w-8 h-8 rounded-lg bg-white/10 hover:bg-white/20 flex items-center justify-center">
+                    <i class="ph-bold ph-x"></i>
+                </button>
+            </div>
+
+            <!-- İçerik -->
+            <div class="p-6 overflow-y-auto space-y-6 flex-1 bg-sand-50">
+                <!-- İstatistik Kartları -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div class="bg-white p-4 rounded-2xl border border-sage-200 flex items-center justify-between">
+                        <div>
+                            <span class="text-xs text-slate-500">Toplam Randevu Talebi</span>
+                            <div id="stat-total" class="text-2xl font-bold text-sage-900 mt-0.5">3</div>
+                        </div>
+                        <div class="w-10 h-10 rounded-xl bg-sage-100 text-sage-900 flex items-center justify-center text-xl">
+                            <i class="ph-duotone ph-calendar-check"></i>
+                        </div>
+                    </div>
+                    <div class="bg-white p-4 rounded-2xl border border-sage-200 flex items-center justify-between">
+                        <div>
+                            <span class="text-xs text-slate-500">Online Terapi Oranı</span>
+                            <div class="text-2xl font-bold text-emerald-700 mt-0.5">%65</div>
+                        </div>
+                        <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-xl">
+                            <i class="ph-duotone ph-video-camera"></i>
+                        </div>
+                    </div>
+                    <div class="bg-white p-4 rounded-2xl border border-sage-200 flex items-center justify-between">
+                        <div>
+                            <span class="text-xs text-slate-500">Bugünkü Boş Slot</span>
+                            <div class="text-2xl font-bold text-terra-600 mt-0.5">2 Saat</div>
+                        </div>
+                        <div class="w-10 h-10 rounded-xl bg-terra-500/15 text-terra-600 flex items-center justify-center text-xl">
+                            <i class="ph-duotone ph-clock"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Randevu Tablosu -->
+                <div class="bg-white rounded-2xl border border-sage-200 overflow-hidden">
+                    <div class="px-5 py-3.5 border-b border-sage-100 flex justify-between items-center">
+                        <span class="font-bold text-xs sm:text-sm text-sage-900">Gelen Randevu Kayıtları</span>
+                        <span class="text-[11px] text-emerald-700 font-semibold">● Canlı Senkronize</span>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse text-xs">
+                            <thead>
+                                <tr class="bg-sand-100 text-slate-600 uppercase tracking-wider text-[10px]">
+                                    <th class="p-3.5">Kod & Danışan</th>
+                                    <th class="p-3.5">Telefon</th>
+                                    <th class="p-3.5">Hizmet & Format</th>
+                                    <th class="p-3.5">Tarih / Saat</th>
+                                    <th class="p-3.5">Durum</th>
+                                    <th class="p-3.5 text-right">İşlem</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-appointments-tbody" class="divide-y divide-sage-100">
+                                <!-- JS ile doldurulur -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================
+         JAVASCRIPT UYGULAMA MANTIĞI (Tam Fonksiyonel)
+    =========================================== -->
+    <script>
+        /* --- 1. VERİ SETLERİ (Hizmetler, Test Soruları, Bloglar) --- */
+        const servicesData = [
+            {
+                id: 'anksiyete',
+                category: 'duygudurum',
+                icon: 'ph-heartbeat',
+                title: 'Anksiyete (Kaygı) & Panik Bozukluk',
+                shortDesc: 'Sürekli kötü bir şey olacak hissi, kalp çarpıntısı, kontrolü kaybetme korkusu ve panik atakların bilimsel tedavisi.',
+                fullDesc: 'Anksiyete bozuklukları ve panik atak, beynin "tehlike" alarm sisteminin yanlış zamanda devreye girmesidir. Kliniğimizde Bilişsel Davranışçı Terapi (BDT) ve interoceptif maruz bırakma teknikleriyle panik döngüsünü kalıcı olarak kırıyoruz.'
+            },
+            {
+                id: 'depresyon',
+                category: 'duygudurum',
+                icon: 'ph-cloud-sun',
+                title: 'Majör Depresyon & Duygudurum',
+                shortDesc: 'Yaşamdan keyif alamama, kronik yorgunluk, değersizlik hissi ve tükenmişlik sendromuna bütüncül yaklaşım.',
+                fullDesc: 'Depresyon bir irade zayıflığı değil, biyolojik ve psikolojik boyutları olan tedavi edilebilir bir durumdur. Psikoterapi, davranışsal aktivasyon ve gerektiğinde ilaçsız TMS protokolleri ile danışanlarımızın yaşam enerjisini yeniden kazanmasını sağlıyoruz.'
+            },
+            {
+                id: 'emdr-travma',
+                category: 'travma',
+                icon: 'ph-sparkle',
+                title: 'EMDR & Travma Sonrası Stres',
+                shortDesc: 'Geçmişteki sarsıcı anıların, kayıpların ve çocukluk çağı yaralarının bugünkü tetikleyicilerini duyarsızlaştırma.',
+                fullDesc: 'EMDR Terapisi ile zihinde işlenmeden kalmış travmatik anı ağlarına ulaşarak beynin doğal iyileşme kapasitesini harekete geçiriyoruz. Fobiler, kazalar, duygusal ihmal ve ilişki travmalarında hızlı ve derinlikli sonuçlar sunar.'
+            },
+            {
+                id: 'cift-terapisi',
+                category: 'iliski',
+                icon: 'ph-users',
+                title: 'Çift, Evlilik & İlişki Terapisi',
+                shortDesc: 'İletişim kazaları, güven kaybı, aldatılma krizleri ve duygusal uzaklaşmada Gottman & İlişki Pusulası modeli.',
+                fullDesc: 'İlişkilerde tekrarlayan kısır tartışmaları durdurmak, partnerlerin birbirinin duygusal ihtiyaçlarını duymasını sağlamak ve güvenli bağlanmayı inşa etmek için yapılandırılmış çift seansları yürütüyoruz.'
+            },
+            {
+                id: 'yetiskin-dehb',
+                category: 'norogelisimsel',
+                icon: 'ph-lightning',
+                title: 'Yetişkin DEHB (Dikkat Eksikliği)',
+                shortDesc: 'Odaklanma güçlüğü, erteleme döngüsü, zaman yönetimi sorunları ve dürtüsellik için tanı ve nöro-koçluk.',
+                fullDesc: 'Yetişkinlikte fark edilmeyen DEHB; iş hayatında potansiyeli kullanamama ve ilişkilerde tükenmişliğe yol açar. Kapsamlı klinik değerlendirme, dikkat stratejileri ve bilişsel yapılandırma ile zihinsel netlik kazandırıyoruz.'
+            },
+            {
+                id: 'okb',
+                category: 'norogelisimsel',
+                icon: 'ph-arrows-clockwise',
+                title: 'OKB (Takıntı - Zorlantı Bozukluğu)',
+                shortDesc: 'Zihinden uzaklaştırılamayan rahatsız edici düşünceler (obsesyon) ve tekrarlayan ritüellerin (kompulsiyon) tedavisi.',
+                fullDesc: 'OKB tedavisinde dünya çapında altın standart kabul edilen Tepki Önleme ve Maruz Bırakma (ERP) ile Kabul ve Kararlılık Terapisi (ACT) protokollerini uyguluyoruz.'
+            }
+        ];
+
+        const quizQuestions = [
+            {
+                q: "Son 2 hafta içinde; gelecekle ilgili aşırı endişe, kontrolü kaybetme hissi veya bedensel gerginlik yaşadınız mı?",
+                options: [
+                    { text: "Neredeyse her gün, çok yoğun", type: "kaygi" },
+                    { text: "Zaman zaman beni zorluyor", type: "kaygi" },
+                    { text: "Daha çok isteksizlik ve hüzün var", type: "depresyon" },
+                    { text: "Hayır, bu konuda rahattım", type: "genel" }
+                ]
+            },
+            {
+                q: "Geçmişte yaşadığınız olumsuz bir olayın (ayrılık, kayıp, çocukluk anısı) bugün hala sizi tetiklediğini düşünüyor musunuz?",
+                options: [
+                    { text: "Evet, sık sık zihnime geliyor", type: "travma" },
+                    { text: "Benzer durumlarda aşırı tepki veriyorum", type: "travma" },
+                    { text: "Sorunum daha çok güncel ilişkimle ilgili", type: "iliski" },
+                    { text: "Pek sayılmaz", type: "genel" }
+                ]
+            },
+            {
+                q: "İşlerinize odaklanmakta, başladığınız işi bitirmekte veya zihninizi susturmakta güçlük çekiyor musunuz?",
+                options: [
+                    { text: "Evet, sürekli erteliyorum ve dağılıyorum", type: "dehb" },
+                    { text: "Takıntılı düşünceler odaklanmamı engelliyor", type: "kaygi" },
+                    { text: "Hiçbir şey yapacak enerjim yok", type: "depresyon" },
+                    { text: "Odaklanmam normal düzeyde", type: "genel" }
+                ]
+            },
+            {
+                q: "Romantik ilişkinizde veya aile içi iletişiminizde anlaşılmadığınızı, aynı tartışmaların kısır döngüye girdiğini hissediyor musunuz?",
+                options: [
+                    { text: "Evet, partnerimle ciddi iletişim krizimiz var", type: "iliski" },
+                    { text: "İnsanlardan tamamen uzaklaşma eğilimindeyim", type: "depresyon" },
+                    { text: "Terk edilme veya reddedilme kaygım yüksek", type: "travma" },
+                    { text: "İlişkilerim şu an dengeli", type: "genel" }
+                ]
+            },
+            {
+                q: "Bir terapi sürecinden şu anki en temel beklentiniz nedir?",
+                options: [
+                    { text: "Kaygı ve panik ataklarımı kontrol altına almak", type: "kaygi" },
+                    { text: "Geçmişin yüklerinden ve travmalarımdan arınmak", type: "travma" },
+                    { text: "İlişkimi onarmak ve sağlıklı sınırlar koymak", type: "iliski" },
+                    { text: "Kendimi tanımak ve yaşam enerjimi bulmak", type: "depresyon" }
+                ]
+            }
+        ];
+
+        const blogPosts = [
+            {
+                id: 1,
+                category: 'Kaygı & Panik',
+                readTime: '4 Dk Okuma',
+                title: 'Gece Gelen Panik Atak: Neden Olur ve O Anda Nasıl Yönetilir?',
+                img: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=600&q=80',
+                excerpt: 'Uykudan kalp çarpıntısı ve nefes açlığı ile uyanmak korkutucu olsa da bedenin yanlış bir alarmıdır. İşte bilimsel regülasyon adımları...',
+                content: 'Gece panik atakları (noktürnal panik), gün içinde bastırılan stres hormonlarının uyku geçişlerinde otonom sinir sistemini uyarmasıyla ortaya çıkar. Kalp krizi geçirdiğinizi düşündürse de tamamen zararsızdır. Bilişsel Davranışçı Terapi ile bu bedensel duyumlardan korkmamayı öğrenmek kalıcı çözümü sağlar.'
+            },
+            {
+                id: 2,
+                category: 'EMDR & Travma',
+                readTime: '5 Dk Okuma',
+                title: 'Zaman Her Şeyi İyileştirmez: İşlenmemiş Travmalar Bedenimizde Nasıl Yaşar?',
+                img: 'https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=600&q=80',
+                excerpt: 'Üzerinden yıllar geçse de bazı anılar dün yaşanmış gibi canımızı yakar. EMDR terapisi beynin kilitli kalan anı ağlarını nasıl çözer?',
+                content: 'Beynimiz normal şartlarda yaşadığımız olayları gece REM uykusunda işler ve arşivler. Ancak aşırı stresli veya travmatik anlarda bu sistem kilitlenir. EMDR terapisi, çift yönlü göz hareketleriyle REM uykusuna benzer bir nörobiyolojik süreç başlatarak anıyı duyarsızlaştırır.'
+            },
+            {
+                id: 3,
+                category: 'Çift & İlişkiler',
+                readTime: '6 Dk Okuma',
+                title: 'İlişkilerde Duygusal Kopukluk: Aynı Evde İki Yabancıya Dönüşmek',
+                img: 'https://images.unsplash.com/photo-1516589091380-5d8e87df6999?auto=format&fit=crop&w=600&q=80',
+                excerpt: 'Büyük kavgalar olmasa da sessizliğin ve mesafenin büyüdüğü ilişkilerde yeniden duygusal yakınlık kurmak mümkün mü?',
+                content: 'Çiftlerin çoğu kliniğimize kavga ettikleri için değil, artık konuşamadıkları için başvurur. Gottman Çift Terapisi modelinde "Sevgi Haritalarını" güncellemek ve partnerin yakınlık çağrılarına yönelmek, ilişkinin duygusal bağışıklık sistemini yeniden ayağa kaldırır.'
+            }
+        ];
+
+        /* --- 2. HİZMET KARTLARINI RENDER ETME VE FİLTRELEME --- */
+        function renderServices(filter = 'all') {
+            const grid = document.getElementById('services-grid');
+            const filtered = filter === 'all' ? servicesData : servicesData.filter(s => s.category === filter);
+            
+            grid.innerHTML = filtered.map(s => `
+                <div class="bg-white rounded-3xl p-7 shadow-soft border border-sage-100 hover:border-sage-300 transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1">
+                    <div>
+                        <div class="w-12 h-12 rounded-2xl bg-sage-100 text-sage-900 group-hover:bg-sage-900 group-hover:text-white transition-colors flex items-center justify-center text-2xl mb-5">
+                            <i class="ph-duotone ${s.icon}"></i>
+                        </div>
+                        <h3 class="font-serif text-2xl font-bold text-sage-900">${s.title}</h3>
+                        <p class="text-slate-600 text-sm mt-2.5 leading-relaxed">${s.shortDesc}</p>
+                    </div>
+                    <div class="pt-6 mt-6 border-t border-sage-100 flex items-center justify-between">
+                        <button onclick="openServiceDetail('${s.id}')" class="text-xs font-bold text-sage-800 hover:text-terra-600 flex items-center gap-1 transition">
+                            <span>Detaylı İncele</span>
+                            <i class="ph-bold ph-arrow-up-right"></i>
+                        </button>
+                        <button onclick="quickSelectService('${s.title}')" class="px-3.5 py-2 rounded-xl bg-sand-100 hover:bg-sage-900 hover:text-white text-sage-900 text-xs font-semibold transition">
+                            Randevu Al
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterServices(cat) {
+            document.querySelectorAll('.service-filter-btn').forEach(btn => {
+                if (btn.dataset.filter === cat) {
+                    btn.className = "service-filter-btn active px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition bg-sage-900 text-white shadow-sm";
+                } else {
+                    btn.className = "service-filter-btn px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition bg-white text-slate-700 hover:bg-sage-100 border border-sage-200";
+                }
+            });
+            renderServices(cat);
+        }
+
+        function openServiceDetail(id) {
+            const item = servicesData.find(s => s.id === id);
+            if (!item) return;
+            document.getElementById('detail-modal-content').innerHTML = `
+                <span class="px-3 py-1 rounded-full bg-sage-100 text-sage-800 text-xs font-bold">Klinik Uzmanlık Alanı</span>
+                <h3 class="font-serif text-3xl font-bold text-sage-900 mt-2">${item.title}</h3>
+                <p class="text-slate-600 text-sm sm:text-base leading-relaxed mt-3">${item.fullDesc}</p>
+                <div class="bg-sand-50 p-4 rounded-2xl border border-sage-200 mt-4 text-xs text-slate-700 space-y-1.5">
+                    <div class="font-bold text-sage-900">Bu Alanda Uygulanan Protokoller:</div>
+                    <div>• 50 Dakikalık Bireysel Yapılandırılmış Seanslar</div>
+                    <div>• Uluslararası Ölçeklerle İlerleme Takibi</div>
+                    <div>• Yüz Yüze veya Online Görüntülü Katılım İmkanı</div>
+                </div>
+            `;
+            document.getElementById('detail-modal').classList.remove('hidden');
+        }
+
+        function closeDetailModal() {
+            document.getElementById('detail-modal').classList.add('hidden');
+        }
+
+        /* --- 3. İNTERAKTİF RUH HALİ TESTİ MANTIĞI --- */
+        let currentQuizIndex = 0;
+        let quizScores = { kaygi: 0, travma: 0, iliski: 0, depresyon: 0, dehb: 0, genel: 0 };
+        let recommendedServiceFromQuiz = "Bireysel Psikoterapi & Kaygı";
+
+        function renderQuizStep() {
+            const item = quizQuestions[currentQuizIndex];
+            const percent = Math.round(((currentQuizIndex + 1) / quizQuestions.length) * 100);
+            document.getElementById('quiz-step-label').innerText = `Soru ${currentQuizIndex + 1} / ${quizQuestions.length}`;
+            document.getElementById('quiz-percent-label').innerText = `%${percent} Tamamlandı`;
+            document.getElementById('quiz-progress-bar').style.width = `${percent}%`;
+            document.getElementById('quiz-question').innerText = item.q;
+
+            const optsContainer = document.getElementById('quiz-options');
+            optsContainer.innerHTML = item.options.map(opt => `
+                <button onclick="answerQuiz('${opt.type}')" class="p-4 rounded-2xl border border-sage-200 hover:border-sage-900 hover:bg-sage-50 text-left transition flex items-center justify-between group">
+                    <span class="text-sm font-medium text-slate-800 group-hover:text-sage-900">${opt.text}</span>
+                    <i class="ph-bold ph-caret-right text-sage-400 group-hover:text-terra-500"></i>
+                </button>
+            `).join('');
+        }
+
+        function answerQuiz(type) {
+            quizScores[type] = (quizScores[type] || 0) + 1;
+            if (currentQuizIndex < quizQuestions.length - 1) {
+                currentQuizIndex++;
+                renderQuizStep();
+            } else {
+                showQuizResult();
+            }
+        }
+
+        function showQuizResult() {
+            document.getElementById('quiz-container').classList.add('hidden');
+            document.getElementById('quiz-result').classList.remove('hidden');
+
+            // En yüksek skoru bul
+            let topType = Object.keys(quizScores).reduce((a, b) => quizScores[a] > quizScores[b] ? a : b);
+            const titleEl = document.getElementById('result-title');
+            const descEl = document.getElementById('result-desc');
+            const recEl = document.getElementById('result-recommendation');
+
+            if (topType === 'travma') {
+                titleEl.innerText = "Geçmiş Yaşantılar ve EMDR Odaklı İyileşme";
+                descEl.innerText = "Yanıtlarınız, geçmişteki bazı düğümlerin bugünkü duygusal tepkilerinizi tetiklediğini gösteriyor. EMDR Terapisi ile bu anıların duygusal yükünü güvenli bir şekilde duyarsızlaştırabiliriz.";
+                recEl.innerText = "EMDR & Travma Odaklı Psikoterapi Değerlendirmesi";
+                recommendedServiceFromQuiz = "EMDR & Travma Sonrası Stres";
+            } else if (topType === 'iliski') {
+                titleEl.innerText = "İlişki Dinamikleri ve Bağlanma Odaklı Süreç";
+                descEl.innerText = "İlişkinizde tekrarlayan iletişim döngüleri veya duygusal mesafe sizi yoruyor olabilir. Gottman ve İlişki Pusulası yaklaşımıyla güvenli iletişimi yeniden inşa edebilirsiniz.";
+                recEl.innerText = "Çift & İlişki Terapisi veya Şema Terapi";
+                recommendedServiceFromQuiz = "Çift, Evlilik & İlişki Terapisi";
+            } else if (topType === 'depresyon') {
+                titleEl.innerText = "Duygudurum Desteği ve Yaşam Enerjisi";
+                descEl.innerText = "Son dönemde yaşadığınız isteksizlik, yorgunluk ve çökkünlük hissi profesyonel bir destekle aşılabilir. BDT ve gerektiğinde ilaçsız TMS seçeneklerimizle yanınızdayız.";
+                recEl.innerText = "Majör Depresyon & Duygudurum Yapılandırma Seansı";
+                recommendedServiceFromQuiz = "Majör Depresyon & Duygudurum";
+            } else {
+                titleEl.innerText = "Kaygı Yönetimi ve Bilişsel Rahatlama";
+                descEl.innerText = "Zihninizin sürekli 'tetikte' olması ve gelecek endişesi enerjinizi tüketiyor. Bilişsel Davranışçı Terapi (BDT) ile kaygı döngüsünü kontrol altına almak oldukça hızlı sonuç verir.";
+                recEl.innerText = "Anksiyete & Panik Bozukluk BDT Seansı";
+                recommendedServiceFromQuiz = "Anksiyete (Kaygı) & Panik Bozukluk";
+            }
+        }
+
+        function resetQuiz() {
+            currentQuizIndex = 0;
+            quizScores = { kaygi: 0, travma: 0, iliski: 0, depresyon: 0, dehb: 0, genel: 0 };
+            document.getElementById('quiz-result').classList.add('hidden');
+            document.getElementById('quiz-container').classList.remove('hidden');
+            renderQuizStep();
+        }
+
+        function applyQuizToBooking() {
+            quickSelectService(recommendedServiceFromQuiz);
+        }
+
+        /* --- 4. SEKME (TAB) DEĞİŞTİRİCİ --- */
+        function switchMethodTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.method-tab-btn').forEach(btn => {
+                btn.className = "method-tab-btn px-5 py-3 rounded-2xl font-semibold text-xs sm:text-sm bg-white text-slate-700 hover:bg-sage-100 border border-sage-200 transition";
+            });
+            document.getElementById('tab-' + tabId).classList.add('active');
+            document.getElementById('tab-btn-' + tabId).className = "method-tab-btn active px-5 py-3 rounded-2xl font-semibold text-xs sm:text-sm bg-sage-900 text-white shadow-md transition";
+        }
+
+        /* --- 5. AKILLI RANDEVU MOTORU (Sanki Veritabanı Varmış Gibi!) --- */
+        let bookingState = {
+            mode: 'Yüz Yüze Klinik (İstanbul)',
+            service: 'Anksiyete (Kaygı) & Panik Bozukluk',
+            date: '',
+            time: '14:00'
+        };
+
+        const availableTimes = ['10:00', '11:30', '13:00', '14:00', '15:30', '17:00', '18:30', '20:00'];
+        const busySlotsByDayIndex = {
+            0: ['10:00', '15:30'],
+            1: ['11:30', '17:00'],
+            2: ['13:00'],
+            3: ['10:00', '14:00', '18:30'],
+            4: ['15:30'],
+            5: ['11:30', '20:00']
+        };
+        let selectedDayIndex = 0;
+
+        function initBookingSystem() {
+            // Hizmet seçeneklerini doldur
+            const srvContainer = document.getElementById('booking-service-list');
+            srvContainer.innerHTML = servicesData.map((s, idx) => `
+                <button type="button" onclick="selectBookingService('${s.title}')" class="booking-srv-btn p-3.5 rounded-xl border text-left transition flex items-center justify-between ${idx === 0 ? 'border-sage-900 bg-sage-50 font-bold text-sage-900' : 'border-sage-200 bg-white text-slate-700 hover:border-sage-400'}" data-title="${s.title}">
+                    <span class="text-xs sm:text-sm">${s.title}</span>
+                    <i class="ph-fill ph-check-circle ${idx === 0 ? 'text-terra-500' : 'text-transparent'}"></i>
+                </button>
+            `).join('');
+
+            // Önümüzdeki 6 günü oluştur
+            const daysContainer = document.getElementById('calendar-days');
+            const dayNames = ['Paz', 'Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt'];
+            const monthNames = ['Oca', 'Şub', 'Mar', 'Nis', 'May', 'Haz', 'Tem', 'Ağu', 'Eyl', 'Eki', 'Kas', 'Ara'];
+            
+            let daysHtml = '';
+            let added = 0;
+            let offset = 0;
+
+            while (added < 6) {
+                let d = new Date();
+                d.setDate(d.getDate() + offset);
+                offset++;
+                if (d.getDay() === 0) continue; // Pazar kapalı
+
+                let label = `${d.getDate()} ${monthNames[d.getMonth()]} ${dayNames[d.getDay()]}`;
+                if (added === 0) bookingState.date = label;
+
+                daysHtml += `
+                    <button type="button" onclick="selectBookingDay(${added}, '${label}')" id="day-btn-${added}" class="day-btn p-3 rounded-2xl border text-center transition ${added === 0 ? 'bg-sage-900 text-white border-sage-900 shadow-md' : 'bg-white text-slate-700 border-sage-200 hover:bg-sage-50'}">
+                        <span class="block text-[10px] uppercase opacity-75">${added === 0 ? 'Bugün/Yarın' : dayNames[d.getDay()]}</span>
+                        <span class="block text-sm font-bold mt-0.5">${d.getDate()} ${monthNames[d.getMonth()]}</span>
+                    </button>
+                `;
+                added++;
+            }
+            daysContainer.innerHTML = daysHtml;
+            renderTimeSlots(0);
+            updateBookingSummary();
+        }
+
+        function selectSessionMode(mode) {
+            bookingState.mode = mode;
+            const yuzBtn = document.getElementById('mode-yuzyuze');
+            const onlBtn = document.getElementById('mode-online');
+            if (mode.includes('Yüz Yüze')) {
+                yuzBtn.className = "mode-btn p-4 rounded-2xl border-2 border-sage-900 bg-sage-50/70 text-left flex items-start gap-3.5 transition";
+                onlBtn.className = "mode-btn p-4 rounded-2xl border-2 border-sage-200 hover:border-sage-400 bg-white text-left flex items-start gap-3.5 transition";
+            } else {
+                onlBtn.className = "mode-btn p-4 rounded-2xl border-2 border-sage-900 bg-sage-50/70 text-left flex items-start gap-3.5 transition";
+                yuzBtn.className = "mode-btn p-4 rounded-2xl border-2 border-sage-200 hover:border-sage-400 bg-white text-left flex items-start gap-3.5 transition";
+            }
+            updateBookingSummary();
+        }
+
+        function selectBookingService(title) {
+            bookingState.service = title;
+            document.querySelectorAll('.booking-srv-btn').forEach(btn => {
+                const icon = btn.querySelector('i');
+                if (btn.dataset.title === title) {
+                    btn.className = "booking-srv-btn p-3.5 rounded-xl border text-left transition flex items-center justify-between border-sage-900 bg-sage-50 font-bold text-sage-900";
+                    icon.className = "ph-fill ph-check-circle text-terra-500";
+                } else {
+                    btn.className = "booking-srv-btn p-3.5 rounded-xl border text-left transition flex items-center justify-between border-sage-200 bg-white text-slate-700 hover:border-sage-400";
+                    icon.className = "ph-fill ph-check-circle text-transparent";
+                }
+            });
+            updateBookingSummary();
+        }
+
+        function quickSelectService(title) {
+            selectBookingService(title);
+            document.getElementById('randevu-motoru').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function selectBookingDay(idx, label) {
+            selectedDayIndex = idx;
+            bookingState.date = label;
+            document.querySelectorAll('.day-btn').forEach((btn, i) => {
+                if (i === idx) {
+                    btn.className = "day-btn p-3 rounded-2xl border text-center transition bg-sage-900 text-white border-sage-900 shadow-md";
+                } else {
+                    btn.className = "day-btn p-3 rounded-2xl border text-center transition bg-white text-slate-700 border-sage-200 hover:bg-sage-50";
+                }
+            });
+            renderTimeSlots(idx);
+            updateBookingSummary();
+        }
+
+        function renderTimeSlots(dayIdx) {
+            const container = document.getElementById('time-slots');
+            const busyList = busySlotsByDayIndex[dayIdx] || [];
+            
+            // Eğer mevcut seçili saat doluysa ilk boş saati seç
+            if (busyList.includes(bookingState.time)) {
+                bookingState.time = availableTimes.find(t => !busyList.includes(t)) || '14:00';
+            }
+
+            container.innerHTML = availableTimes.map(time => {
+                const isBusy = busyList.includes(time);
+                const isSelected = bookingState.time === time && !isBusy;
+                if (isBusy) {
+                    return `<button type="button" disabled class="py-3 rounded-xl border border-slate-200 bg-slate-100 text-slate-400 text-xs font-medium line-through cursor-not-allowed">${time} (Dolu)</button>`;
+                }
+                return `
+                    <button type="button" onclick="selectTimeSlot('${time}')" class="py-3 rounded-xl border text-xs font-bold transition ${isSelected ? 'bg-terra-500 text-white border-terra-500 shadow-md' : 'bg-white text-sage-900 border-sage-200 hover:border-sage-900'}">
+                        ${time}
+                    </button>
+                `;
+            }).join('');
+        }
+
+        function selectTimeSlot(time) {
+            bookingState.time = time;
+            renderTimeSlots(selectedDayIndex);
+            updateBookingSummary();
+        }
+
+        function updateBookingSummary() {
+            document.getElementById('summary-mode').innerText = bookingState.mode;
+            document.getElementById('summary-service').innerText = bookingState.service;
+            document.getElementById('summary-datetime').innerText = `${bookingState.date} • ${bookingState.time}`;
+        }
+
+        function goToBookingStep(step) {
+            [1, 2, 3, 4].forEach(s => {
+                document.getElementById('booking-step-' + s).classList.add('hidden');
+                const ind = document.getElementById('step-ind-' + s);
+                if (s <= step) {
+                    ind.className = "flex flex-col sm:flex-row items-center justify-center gap-2 font-bold text-terra-400";
+                } else {
+                    ind.className = "flex flex-col sm:flex-row items-center justify-center gap-2 text-sage-300";
+                }
+            });
+            document.getElementById('booking-step-' + step).classList.remove('hidden');
+        }
+
+        /* --- 6. VERİTABANI SİMÜLASYONU (LocalStorage & Admin Panel) --- */
+        let appointmentsDB = JSON.parse(localStorage.getItem('klinik_appointments_demo')) || [
+            { code: 'PSK-4910', name: 'Zeynep K.', phone: '0532 410 ** **', mode: 'Online Görüntülü Terapi', service: 'EMDR & Travma Sonrası Stres', datetime: 'Bugün • 15:30', status: 'Onaylandı' },
+            { code: 'PSK-3821', name: 'Murat & Selin A.', phone: '0544 892 ** **', mode: 'Yüz Yüze Klinik (İstanbul)', service: 'Çift, Evlilik & İlişki Terapisi', datetime: 'Yarın • 17:00', status: 'Onaylandı' },
+            { code: 'PSK-7104', name: 'Caner T.', phone: '0533 118 ** **', mode: 'Yüz Yüze Klinik (İstanbul)', service: 'Yetişkin DEHB', datetime: '16 Kas • 11:30', status: 'Bekliyor' }
+        ];
+
+        function submitAppointment() {
+            const name = document.getElementById('client-name').value.trim();
+            const phone = document.getElementById('client-phone').value.trim();
+            const errBox = document.getElementById('booking-error');
+
+            if (!name || !phone) {
+                errBox.classList.remove('hidden');
+                return;
+            }
+            errBox.classList.add('hidden');
+
+            const code = 'PSK-' + Math.floor(1000 + Math.random() * 9000);
+            const newRecord = {
+                code: code,
+                name: name,
+                phone: phone,
+                mode: bookingState.mode,
+                service: bookingState.service,
+                datetime: `${bookingState.date} • ${bookingState.time}`,
+                status: 'Yeni Kayıt'
+            };
+
+            appointmentsDB.unshift(newRecord);
+            localStorage.setItem('klinik_appointments_demo', JSON.stringify(appointmentsDB));
+
+            // Onay ekranını doldur
+            document.getElementById('confirm-name').innerText = name;
+            document.getElementById('confirm-code').innerText = code;
+            document.getElementById('confirm-mode').innerText = bookingState.mode;
+            document.getElementById('confirm-service').innerText = bookingState.service;
+            document.getElementById('confirm-datetime').innerText = `${bookingState.date}, Saat ${bookingState.time}`;
+
+            updateAdminUI();
+            goToBookingStep(4);
+        }
+
+        function sendBookingToWhatsApp() {
+            const name = document.getElementById('confirm-name').innerText;
+            const code = document.getElementById('confirm-code').innerText;
+            const text = `Merhaba Dr. Elif Soylu Kliniği, web siteniz üzerinden ${code} koduyla randevu oluşturdum.%0A%0AAd Soyad: ${name}%0AHizmet: ${bookingState.service}%0AFormat: ${bookingState.mode}%0ATarih/Saat: ${bookingState.date} - ${bookingState.time}`;
+            window.open(`https://wa.me/905000000000?text=${text}`, '_blank');
+        }
+
+        function updateAdminUI() {
+            document.getElementById('admin-badge').innerText = appointmentsDB.length;
+            document.getElementById('stat-total').innerText = appointmentsDB.length;
+            const tbody = document.getElementById('admin-appointments-tbody');
+            tbody.innerHTML = appointmentsDB.map((item, index) => `
+                <tr class="hover:bg-sand-50 transition">
+                    <td class="p-3.5">
+                        <span class="font-mono font-bold text-terra-600 block">${item.code}</span>
+                        <span class="font-bold text-sage-900">${item.name}</span>
+                    </td>
+                    <td class="p-3.5 text-slate-600">${item.phone}</td>
+                    <td class="p-3.5">
+                        <span class="font-semibold text-slate-800 block">${item.service}</span>
+                        <span class="text-[11px] text-slate-500">${item.mode}</span>
+                    </td>
+                    <td class="p-3.5 font-semibold text-sage-900">${item.datetime}</td>
+                    <td class="p-3.5">
+                        <span class="px-2.5 py-1 rounded-full text-[10px] font-bold ${item.status === 'Onaylandı' ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'}">
+                            ${item.status}
+                        </span>
+                    </td>
+                    <td class="p-3.5 text-right space-x-1">
+                        <button onclick="approveAppointment(${index})" class="px-2.5 py-1 rounded-lg bg-emerald-600 text-white text-[11px] font-semibold hover:bg-emerald-700">Onayla</button>
+                        <button onclick="deleteAppointment(${index})" class="px-2 py-1 rounded-lg bg-rose-100 text-rose-700 text-[11px] font-semibold hover:bg-rose-200">Sil</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function approveAppointment(idx) {
+            appointmentsDB[idx].status = 'Onaylandı';
+            localStorage.setItem('klinik_appointments_demo', JSON.stringify(appointmentsDB));
+            updateAdminUI();
+        }
+
+        function deleteAppointment(idx) {
+            appointmentsDB.splice(idx, 1);
+            localStorage.setItem('klinik_appointments_demo', JSON.stringify(appointmentsDB));
+            updateAdminUI();
+        }
+
+        function openAdminPanel() {
+            updateAdminUI();
+            document.getElementById('admin-modal').classList.remove('hidden');
+        }
+        function closeAdminPanel() {
+            document.getElementById('admin-modal').classList.add('hidden');
+        }
+
+        /* --- 7. BLOG KARTLARI VE OKUMA MODALI --- */
+        function renderBlogs() {
+            const grid = document.getElementById('blog-grid');
+            grid.innerHTML = blogPosts.map(b => `
+                <article class="bg-white rounded-3xl overflow-hidden shadow-soft border border-sage-100 flex flex-col justify-between group hover:shadow-xl transition">
+                    <div>
+                        <div class="relative h-52 overflow-hidden bg-sage-200">
+                            <img src="${b.img}" alt="${b.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <span class="absolute top-4 left-4 px-3 py-1 rounded-full bg-white/90 backdrop-blur-md text-sage-900 text-xs font-bold">${b.category}</span>
+                        </div>
+                        <div class="p-6">
+                            <span class="text-[11px] text-slate-400 font-medium">${b.readTime} • Uzm. Dr. Elif Soylu</span>
+                            <h3 class="font-serif text-xl font-bold text-sage-900 mt-1 group-hover:text-terra-600 transition">${b.title}</h3>
+                            <p class="text-slate-600 text-xs sm:text-sm mt-2 line-clamp-3 leading-relaxed">${b.excerpt}</p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6">
+                        <button onclick="openBlogModal(${b.id})" class="text-xs font-bold text-sage-900 hover:text-terra-600 flex items-center gap-1.5">
+                            <span>Makalenin Tamamını Oku</span>
+                            <i class="ph-bold ph-arrow-right"></i>
+                        </button>
+                    </div>
+                </article>
+            `).join('');
+        }
+
+        function openBlogModal(id) {
+            const post = blogPosts.find(p => p.id === id);
+            if (!post) return;
+            document.getElementById('detail-modal-content').innerHTML = `
+                <img src="${post.img}" class="w-full h-56 object-cover rounded-2xl mb-4">
+                <span class="px-3 py-1 rounded-full bg-terra-500/15 text-terra-600 text-xs font-bold">${post.category} • ${post.readTime}</span>
+                <h3 class="font-serif text-2xl sm:text-3xl font-bold text-sage-900 mt-2">${post.title}</h3>
+                <p class="text-slate-700 text-sm sm:text-base leading-relaxed mt-4">${post.excerpt}</p>
+                <p class="text-slate-700 text-sm sm:text-base leading-relaxed mt-3">${post.content}</p>
+            `;
+            document.getElementById('detail-modal').classList.remove('hidden');
+        }
+
+        /* --- 8. NEFES ASİSTANI MANTIĞI --- */
+        let breathInterval = null;
+        let isBreathing = false;
+
+        function openBreathingModal() {
+            document.getElementById('breathing-modal').classList.remove('hidden');
+        }
+        function closeBreathingModal() {
+            stopBreathingExercise();
+            document.getElementById('breathing-modal').classList.add('hidden');
+        }
+        function toggleBreathingExercise() {
+            if (isBreathing) {
+                stopBreathingExercise();
+            } else {
+                startBreathingExercise();
+            }
+        }
+        function startBreathingExercise() {
+            isBreathing = true;
+            document.getElementById('breath-toggle-btn').innerText = "Durdur";
+            const outer = document.getElementById('breath-outer');
+            const inner = document.getElementById('breath-inner');
+
+            let phase = 0; // 0: Nefes Al, 1: Tut, 2: Ver
+            const runPhase = () => {
+                if (phase === 0) {
+                    inner.innerText = "Nefes Al (4s)";
+                    outer.style.transform = "scale(1.65)";
+                } else if (phase === 1) {
+                    inner.innerText = "Tut (4s)";
+                } else {
+                    inner.innerText = "Yavaşça Ver";
+                    outer.style.transform = "scale(1)";
+                }
+                phase = (phase + 1) % 3;
+            };
+            runPhase();
+            breathInterval = setInterval(runPhase, 4000);
+        }
+        function stopBreathingExercise() {
+            isBreathing = false;
+            clearInterval(breathInterval);
+            document.getElementById('breath-toggle-btn').innerText = "Egzersizi Başlat";
+            document.getElementById('breath-inner').innerText = "Başla";
+            document.getElementById('breath-outer').style.transform = "scale(1)";
+        }
+
+        /* --- 9. S.S.S. AKORDEON & MOBİL MENÜ --- */
+        function toggleFaq(index) {
+            const ans = document.getElementById('faq-ans-' + index);
+            const icon = document.getElementById('faq-icon-' + index);
+            const isHidden = ans.classList.contains('hidden');
+            if (isHidden) {
+                ans.classList.remove('hidden');
+                icon.classList.replace('ph-plus', 'ph-minus');
+            } else {
+                ans.classList.add('hidden');
+                icon.classList.replace('ph-minus', 'ph-plus');
+            }
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        /* --- 10. PARALAKS, SCROLL REVEAL VE İLERLEME ÇUBUĞU --- */
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = (scrollTop / docHeight) * 100;
+            document.getElementById('scroll-progress').style.width = progress + '%';
+
+            // Paralaks Küreleri
+            document.querySelectorAll('.parallax-el').forEach(el => {
+                const speed = parseFloat(el.dataset.parallax || 0.1);
+                el.style.transform = `translateY(${scrollTop * speed}px)`;
+            });
+        });
+
+        // IntersectionObserver ile Aşağı İndikçe Yumuşak Belirme
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.12 });
+
+        window.onload = function() {
+            renderServices('all');
+            renderQuizStep();
+            initBookingSystem();
+            renderBlogs();
+            updateAdminUI();
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        };
+    </script>
+</body>
+</html>
